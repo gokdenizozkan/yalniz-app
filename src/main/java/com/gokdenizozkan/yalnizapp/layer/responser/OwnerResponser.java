@@ -4,7 +4,6 @@ import com.gokdenizozkan.yalnizapp.config.response.Data;
 import com.gokdenizozkan.yalnizapp.config.response.StructuredResponse;
 import com.gokdenizozkan.yalnizapp.config.response.StructuredResponseEntityBuilder;
 import com.gokdenizozkan.yalnizapp.dto.owner.OwnerDtoMappers;
-import com.gokdenizozkan.yalnizapp.dto.owner.OwnerEntityMappers;
 import com.gokdenizozkan.yalnizapp.dto.owner.request.OwnerSaveRequest;
 import com.gokdenizozkan.yalnizapp.dto.owner.request.OwnerUpdateRequest;
 import com.gokdenizozkan.yalnizapp.dto.owner.response.OwnerResponse;
@@ -18,7 +17,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
@@ -62,7 +60,8 @@ public class OwnerResponser {
     public ResponseEntity<StructuredResponse> update(Long id, OwnerUpdateRequest request) {
         Data data = service.update(id, request);
         data.map(dtoMappers.toResponse);
-        return StructuredResponseEntityBuilder.success(data);
+
+        return StructuredResponseEntityBuilder.success(data.get());
     }
 
     public ResponseEntity<StructuredResponse> deleteById(Long id) {

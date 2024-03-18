@@ -45,7 +45,7 @@ public class AppointmentResponser {
     public ResponseEntity<StructuredResponse> update(AppointmentUpdateRequest request) {
         Data data = service.update(request);
         data.map(dtoMappers.toResponse);
-        return StructuredResponseEntityBuilder.success(data);
+        return StructuredResponseEntityBuilder.success(data.get());
     }
 
     public ResponseEntity<StructuredResponse> save(AppointmentSaveRequest request) {

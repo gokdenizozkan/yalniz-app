@@ -49,7 +49,7 @@ public class ReportResponser {
     public ResponseEntity<StructuredResponse> saveVaccination(Long id, ReportVaccinationAddRequest request) {
         Data data = service.saveVaccination(id, request);
         data.map(dtoMappers.toResponse);
-        return StructuredResponseEntityBuilder.success(data);
+        return StructuredResponseEntityBuilder.success(data.get());
     }
 
     public ResponseEntity<StructuredResponse> deleteById(Long id) {

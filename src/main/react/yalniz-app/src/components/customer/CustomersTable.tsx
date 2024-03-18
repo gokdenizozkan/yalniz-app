@@ -11,6 +11,7 @@ import UpdateCustomerModalActionIcon from "@/components/customer/modal/UpdateCus
 import {InputWithButton} from "@/components/firstParty/InputWithButton";
 import {useNavigate} from "react-router-dom";
 import SavePetModalMenuItem from "@/components/pet/modal/SavePetModalMenuItem";
+import AddAppointmentModalActionIcon from "@/components/customer/modal/AddAppointmentModalActionIcon";
 
 export function CustomersTable() {
   const navigate = useNavigate();
@@ -44,11 +45,10 @@ export function CustomersTable() {
       <Table.Td>
         <Group gap={0} justify="flex-end">
           <UpdateCustomerModalActionIcon customerId={item.id}/>
+
           <SavePetModalMenuItem />
 
-          <ActionIcon onClick={() => console.log("make appointment")} variant="subtle" color="blue">
-            <IconMessages style={{width: rem(22), height: rem(22)}} stroke={1.5}/>
-          </ActionIcon>
+          <AddAppointmentModalActionIcon ownerId={item.id}/>
 
           <ActionIcon onClick={() => deleteRecord(+item.id)} variant="subtle" color="red">
             <IconTrash style={{width: rem(22), height: rem(22)}} stroke={1.5}/>

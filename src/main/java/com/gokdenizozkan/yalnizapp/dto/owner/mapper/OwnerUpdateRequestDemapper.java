@@ -2,6 +2,7 @@ package com.gokdenizozkan.yalnizapp.dto.owner.mapper;
 
 import com.gokdenizozkan.yalnizapp.dto.owner.request.OwnerUpdateRequest;
 import com.gokdenizozkan.yalnizapp.entity.Owner;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

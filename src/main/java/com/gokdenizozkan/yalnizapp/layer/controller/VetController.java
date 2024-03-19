@@ -2,9 +2,11 @@ package com.gokdenizozkan.yalnizapp.layer.controller;
 
 import com.gokdenizozkan.yalnizapp.config.response.StructuredResponse;
 import com.gokdenizozkan.yalnizapp.dto.vet.request.VetSaveRequest;
+import com.gokdenizozkan.yalnizapp.dto.vet.request.VetUpdateRequest;
 import com.gokdenizozkan.yalnizapp.layer.responser.VetResponser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/v2/vets")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:5173")
 public class VetController {
     private final VetResponser responser;
 
@@ -36,7 +39,7 @@ public class VetController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<StructuredResponse> update(@PathVariable Long id, @RequestBody VetSaveRequest request) {
+    public ResponseEntity<StructuredResponse> update(@PathVariable Long id, @RequestBody VetUpdateRequest request) {
         return responser.update(id, request);
     }
 

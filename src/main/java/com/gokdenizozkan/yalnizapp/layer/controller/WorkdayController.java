@@ -2,9 +2,11 @@ package com.gokdenizozkan.yalnizapp.layer.controller;
 
 import com.gokdenizozkan.yalnizapp.config.response.StructuredResponse;
 import com.gokdenizozkan.yalnizapp.dto.workday.request.WorkdaySaveRequest;
+import com.gokdenizozkan.yalnizapp.dto.workday.request.WorkdayUpdateRequest;
 import com.gokdenizozkan.yalnizapp.layer.responser.WorkdayResponser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/v2/workdays")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:5173")
 public class WorkdayController {
     private final WorkdayResponser responser;
 
@@ -36,7 +39,7 @@ public class WorkdayController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<StructuredResponse> update(@PathVariable Long id, @RequestBody WorkdaySaveRequest request) {
+    public ResponseEntity<StructuredResponse> update(@PathVariable Long id, @RequestBody WorkdayUpdateRequest request) {
         return responser.update(id, request);
     }
 

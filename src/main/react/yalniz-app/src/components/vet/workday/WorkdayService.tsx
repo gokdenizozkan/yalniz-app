@@ -1,8 +1,8 @@
 import axios from "axios";
 import {API_URL as URL} from "@/config";
-import {VetSaveRequest, VetUpdateRequest} from "@/components/vet/objects";
+import {WorkdaySaveRequest} from "@/components/vet/workday/objects";
 
-const API_URL = URL + "vets";
+const API_URL = URL + "workdays";
 
 export async function findAll() {
   return await axios.get(API_URL)
@@ -20,11 +20,11 @@ export async function findPetsById(id: number) {
   return await axios.get(`${API_URL}/${id}/pets`)
 }
 
-export async function save(values: VetSaveRequest) {
+export async function save(values: WorkdaySaveRequest) {
   return await axios.post(API_URL, values)
 }
 
-export async function update(id: number, values: VetUpdateRequest) {
+export async function update(id: number, values: WorkdaySaveRequest) {
   return await axios.put(`${API_URL}/${id}`, values)
 }
 

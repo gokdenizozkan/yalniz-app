@@ -1,5 +1,6 @@
 package com.gokdenizozkan.yalnizapp.entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -36,11 +37,11 @@ public class Appointment {
     @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime end;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "pet_id", referencedColumnName = "id")
     private Pet pet;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "vet_id", referencedColumnName = "id")
     private Vet vet;
 }

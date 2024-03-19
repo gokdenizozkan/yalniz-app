@@ -9,16 +9,6 @@ export class CustomerSaveRequest {
 }
 
 export class CustomerUpdateRequest {
-
-  constructor(customer: any) {
-    this.id = customer.id;
-    this.name = customer.name;
-    this.email = customer.email;
-    this.phone = customer.phone;
-    this.address = customer.address;
-    this.city = customer.city;
-  }
-
   id: number = 0;
   name: string = '';
   email: string = '';

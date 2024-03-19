@@ -1,17 +1,19 @@
 import { useDisclosure } from '@mantine/hooks';
 import {Modal, Button, Box, TextInput, Checkbox, Group, Textarea, ActionIcon, rem} from '@mantine/core';
 import {useForm} from "@mantine/form";
-import {findById, update} from "@/components/customer/CustomerService";
-import {CustomerUpdateRequest} from "@/components/customer/objects";
+import {findById, update} from "@/components/vet/VetService";
+import {VetUpdateRequest} from "@/components/vet/objects";
 import React from "react";
 import {IconPencil} from "@tabler/icons-react";
 
-function UpdateCustomerModalActionIcon({customerId = -1}) {
+export default UpdateVaccinationModalActionIcon;
+
+function UpdateVaccinationModalActionIcon({vetId = -1}) {
   const [opened, {open, close}] = useDisclosure(false);
 
   const readyForm = () => {
-    if (customerId !== -1) {
-      findById(customerId)
+    if (vetId !== -1) {
+      findById(vetId)
         .then(response => customerForm.setValues(response.data.data))
         .catch(console.error);
       open();
@@ -20,12 +22,12 @@ function UpdateCustomerModalActionIcon({customerId = -1}) {
 
   const customerForm = useForm(
     {
-      initialValues: new CustomerUpdateRequest(),
+      initialValues: new VetUpdateRequest(),
     }
   );
 
   const onSubmit = () => {
-    update(+customerId, customerForm.values)
+    update(+vetId, customerForm.values)
       .then(() => {
         console.log("customer updated successfully");
       })
@@ -38,7 +40,7 @@ function UpdateCustomerModalActionIcon({customerId = -1}) {
     <>
       <Modal opened={opened} onClose={close} title="Update Customer" centered>
         <Box maw={340} mx="auto">
-          <form onSubmit={customerForm.onSubmit(() => onSubmit())}>
+          <form onSubmit={(values) => {onSubmit()}}>
             <TextInput withAsterisk label="Name" placeholder="Hold the Door" {...customerForm.getInputProps('name')} />
             <TextInput withAsterisk label="Phone" placeholder="+9059988877665544" {...customerForm.getInputProps('phone')} />
             <TextInput withAsterisk label="Email" placeholder="your@email.com" {...customerForm.getInputProps('email')} />
@@ -58,5 +60,3 @@ function UpdateCustomerModalActionIcon({customerId = -1}) {
     </>
   );
 }
-
-export default UpdateCustomerModalActionIcon;

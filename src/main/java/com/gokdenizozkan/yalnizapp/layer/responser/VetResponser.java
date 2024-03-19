@@ -5,6 +5,7 @@ import com.gokdenizozkan.yalnizapp.config.response.StructuredResponse;
 import com.gokdenizozkan.yalnizapp.config.response.StructuredResponseEntityBuilder;
 import com.gokdenizozkan.yalnizapp.dto.vet.VetDtoMappers;
 import com.gokdenizozkan.yalnizapp.dto.vet.request.VetSaveRequest;
+import com.gokdenizozkan.yalnizapp.dto.vet.request.VetUpdateRequest;
 import com.gokdenizozkan.yalnizapp.dto.vet.response.VetResponse;
 import com.gokdenizozkan.yalnizapp.entity.Vet;
 import com.gokdenizozkan.yalnizapp.layer.service.VetService;
@@ -38,7 +39,7 @@ public class VetResponser {
         return StructuredResponseEntityBuilder.success(response);
     }
 
-    public ResponseEntity<StructuredResponse> update(Long id, VetSaveRequest request) {
+    public ResponseEntity<StructuredResponse> update(Long id, VetUpdateRequest request) {
         Data data = service.update(id, request);
         data.map(dtoMappers.toResponse);
         return StructuredResponseEntityBuilder.success(data.get());

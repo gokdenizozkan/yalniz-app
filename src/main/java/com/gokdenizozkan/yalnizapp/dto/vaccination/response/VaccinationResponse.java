@@ -13,5 +13,6 @@ public record VaccinationResponse(
         LocalDate administrationDate,
         @Temporal(TemporalType.DATE)
         LocalDate expirationDate,
-        Long petId
+        Long petId,
+        Long reportId
 ) {}

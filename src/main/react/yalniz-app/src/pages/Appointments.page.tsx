@@ -1,7 +1,12 @@
+import {Container} from "@mantine/core";
+import {AppointmentsTable} from "@/components/appointment/AppointmentsTable";
+
 function AppointmentsPage() {
   return (
     <div>
-      <h1>Appointments</h1>
+      <Container>
+        <AppointmentsTable/>
+      </Container>
     </div>
   );
 }

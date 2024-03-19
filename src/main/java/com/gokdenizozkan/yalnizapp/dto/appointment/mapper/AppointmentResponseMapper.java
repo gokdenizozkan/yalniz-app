@@ -12,8 +12,8 @@ public class AppointmentResponseMapper implements Function<Appointment, Appointm
     public AppointmentResponse apply(Appointment appointment) {
         return new AppointmentResponse(
                 appointment.getId(),
-                appointment.getStart(),
-                appointment.getEnd(),
+                appointment.getStart().toString(),
+                appointment.getEnd().toString(),
                 appointment.getPet().getId(),
                 appointment.getVet().getId()
         );

@@ -7,10 +7,8 @@ import java.time.LocalDateTime;
 
 public record AppointmentResponse(
         Long id,
-        @Temporal(TemporalType.TIMESTAMP)
-        LocalDateTime start,
-        @Temporal(TemporalType.TIMESTAMP)
-        LocalDateTime end,
+        String start,
+        String end,
         Long petId,
         Long vetId
 ) {

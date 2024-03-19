@@ -31,10 +31,10 @@ public class Report {
     private String diagnosis;
     private Double cost;
 
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "appointment_id", referencedColumnName = "id")
     private Appointment appointment;
 
-    @OneToMany(mappedBy = "report")
+    @OneToMany(mappedBy = "report", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<Vaccination> vaccinations;
 }

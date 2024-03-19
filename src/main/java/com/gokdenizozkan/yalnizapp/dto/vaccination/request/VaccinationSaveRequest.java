@@ -7,6 +7,7 @@ public record VaccinationSaveRequest(
         String code,
         LocalDate administrationDate,
         LocalDate expirationDate,
-        Long petId
+        Long petId,
+        Long reportId
 ) {
 }

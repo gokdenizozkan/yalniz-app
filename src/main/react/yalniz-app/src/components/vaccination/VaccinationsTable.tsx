@@ -1,29 +1,27 @@
 import {Avatar, Table, Group, Text, ActionIcon, rem} from '@mantine/core';
 import {
-  IconMessages,
   IconTrash,
   IconUser,
 } from '@tabler/icons-react';
 import React, {useEffect, useRef, useState} from "react";
-import {CustomerResponse} from "@/components/customer/objects";
-import {deleteById, findAll, search} from "@/components/customer/CustomerService";
-import UpdateCustomerModalActionIcon from "@/components/customer/modal/UpdateCustomerModalActionIcon";
+import {VaccinationResponse} from "@/components/vaccination/objects";
+import {deleteById, findAll, search} from "@/components/vaccination/VaccinationService";
+import UpdateVetModalActionIcon from "@/components/vaccination/modal/UpdateVaccinationModalActionIcon";
 import {InputWithButton} from "@/components/firstParty/InputWithButton";
 import {useNavigate} from "react-router-dom";
-import SavePetModalMenuItem from "@/components/pet/modal/SavePetModalMenuItem";
-import AddAppointmentModalActionIcon from "@/components/appointment/modal/AddAppointmentModalActionIcon";
+import AddWorkdayModalActionIcon from "@/components/vet/workday/modal/AddWorkdayModalActionIcon";
 
-export function CustomersTable() {
+export function VaccinationsTable() {
   const navigate = useNavigate();
-  const searchCustomer = (name:string) => {
+  const searchVet = (name:string) => {
     search(name)
       .then(response => loadData(response.data, setData))
-      .catch(error => console.error('Error searching customer', error, '\n\tsearched for:', name));
+      .catch(error => console.error('Error searching Vet', error, '\n\tsearched for:', name));
   };
   const deleteRecord = (id:number) => {
     deleteById(id)
-      .then(() => console.log('Customer deleted successfully'))
-      .catch((error) => console.error('Error deleting customer', error));
+      .then(() => console.log('Vet deleted successfully'))
+      .catch((error) => console.error('Error deleting  Vet', error));
   }
   const tableFormer = (item:any) => (
     <Table.Tr key={item.id}>
@@ -31,7 +29,7 @@ export function CustomersTable() {
         <Group gap="sm">
           <Avatar size={40} src={IconUser.toString()} radius={40}/>
           <div>
-            <Text onClick={() => navigate(`/customers/${item.id}`)} fz="sm" fw={500}>{item.name}</Text>
+            <Text onClick={() => navigate(`/vets/${item.id}`)} fz="sm" fw={500}>{item.name}</Text>
             <Text c="dimmed" fz="xs">{item.phone}</Text>
           </div>
         </Group>
@@ -44,11 +42,9 @@ export function CustomersTable() {
 
       <Table.Td>
         <Group gap={0} justify="flex-end">
-          <UpdateCustomerModalActionIcon customerId={item.id}/>
+          <UpdateVetModalActionIcon vetId={item.id}/>
 
-          <SavePetModalMenuItem customerId={item.id} />
-
-          <AddAppointmentModalActionIcon customerId={item.id}/>
+          <AddWorkdayModalActionIcon vetId={item.id} />
 
           <ActionIcon onClick={() => deleteRecord(+item.id)} variant="subtle" color="red">
             <IconTrash style={{width: rem(22), height: rem(22)}} stroke={1.5}/>
@@ -59,7 +55,7 @@ export function CustomersTable() {
     </Table.Tr>
   );
 
-  const [data, setData] = useState([] as CustomerResponse[]);
+  const [data, setData] = useState([] as VaccinationResponse[]);
   const rows = data.map(item => tableFormer(item));
 
   const firstRun = useRef(true);
@@ -72,7 +68,7 @@ export function CustomersTable() {
 
   return (
     <>
-      <InputWithButton placeholder="Search customers" runnableOnSubmit={searchCustomer}/>
+      <InputWithButton placeholder="Search Vets" runnableOnSubmit={searchVet}/>
       <Table.ScrollContainer minWidth={800}>
       <Table verticalSpacing="md">
         <Table.Tbody>{rows}</Table.Tbody>
@@ -89,5 +85,5 @@ function loadData(dataToLoad:any, setData:any) {
 function loadAllData(setData:any) {
   findAll()
     .then(response => setData(response.data.data))
-    .catch(error => console.error('Error loading customers', error));
+    .catch(error => console.error('Error loading Vets', error));
 }

@@ -3,7 +3,6 @@ import {useForm} from '@mantine/form';
 import {
   Box,
   Button,
-  TextInput,
   Group,
   rem,
   ActionIcon,
@@ -17,7 +16,7 @@ import {AppointmentSaveRequest} from "@/components/appointment/objects";
 import {IconCalendarPlus} from "@tabler/icons-react";
 import {DateTimePicker} from "@mantine/dates";
 import {useEffect, useRef, useState} from "react";
-import {findPetsById} from '../CustomerService'
+import {findPetsById} from '../../customer/CustomerService'
 import {findAll} from "@/components/vet/VetService";
 import {PetResponse} from "@/components/pet/objects";
 import {VetResponse} from "@/components/vet/objects";

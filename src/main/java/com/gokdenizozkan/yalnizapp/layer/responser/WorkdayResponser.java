@@ -5,6 +5,7 @@ import com.gokdenizozkan.yalnizapp.config.response.StructuredResponse;
 import com.gokdenizozkan.yalnizapp.config.response.StructuredResponseEntityBuilder;
 import com.gokdenizozkan.yalnizapp.dto.workday.WorkdayDtoMappers;
 import com.gokdenizozkan.yalnizapp.dto.workday.request.WorkdaySaveRequest;
+import com.gokdenizozkan.yalnizapp.dto.workday.request.WorkdayUpdateRequest;
 import com.gokdenizozkan.yalnizapp.dto.workday.response.WorkdayResponse;
 import com.gokdenizozkan.yalnizapp.entity.Workday;
 import com.gokdenizozkan.yalnizapp.layer.service.WorkdayService;
@@ -38,7 +39,7 @@ public class WorkdayResponser {
         return StructuredResponseEntityBuilder.success(response);
     }
 
-    public ResponseEntity<StructuredResponse> update(Long id, WorkdaySaveRequest request) {
+    public ResponseEntity<StructuredResponse> update(Long id, WorkdayUpdateRequest request) {
         Data data = service.update(id, request);
         data.map(dtoMappers.toResponse);
         return StructuredResponseEntityBuilder.success(data.get());

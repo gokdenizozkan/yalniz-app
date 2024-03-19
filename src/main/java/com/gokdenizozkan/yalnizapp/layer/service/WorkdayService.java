@@ -5,6 +5,7 @@ import com.gokdenizozkan.yalnizapp.config.exception.ResourceNotFoundException;
 import com.gokdenizozkan.yalnizapp.config.response.Data;
 import com.gokdenizozkan.yalnizapp.dto.workday.WorkdayEntityMappers;
 import com.gokdenizozkan.yalnizapp.dto.workday.request.WorkdaySaveRequest;
+import com.gokdenizozkan.yalnizapp.dto.workday.request.WorkdayUpdateRequest;
 import com.gokdenizozkan.yalnizapp.entity.Workday;
 import com.gokdenizozkan.yalnizapp.layer.repository.WorkdayRepository;
 import lombok.RequiredArgsConstructor;
@@ -32,11 +33,11 @@ public class WorkdayService {
         return repository.save(workday);
     }
 
-    public Data update(Long id, WorkdaySaveRequest request) {
+    public Data update(Long id, WorkdayUpdateRequest request) {
         Workday foundWorkday = repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Workday not found with id: " + id));
 
-        Workday updatedWorkday = entityMappers.fromSaveRequest.apply(request);
+        Workday updatedWorkday = entityMappers.fromUpdateRequest.apply(request);
         repository.save(updatedWorkday);
 
         return Data.of(Pair.of("old", foundWorkday), Pair.of("new", updatedWorkday));

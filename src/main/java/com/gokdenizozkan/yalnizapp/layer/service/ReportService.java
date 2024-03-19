@@ -38,16 +38,6 @@ public class ReportService {
         return repository.save(report);
     }
 
-    public Data update(Long id, ReportUpdateRequest request) {
-        Report foundReport = repository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Report not found with id: " + id));
-
-        Report updatedReport = entityMappers.fromUpdateRequest.apply(request);
-        repository.save(updatedReport);
-
-        return Data.of(Pair.of("old", foundReport), Pair.of("new", updatedReport));
-    }
-
     public Data saveVaccination(Long id, ReportVaccinationAddRequest request) {
         Report report = repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Report not found with id: " + id));
@@ -63,6 +53,16 @@ public class ReportService {
 
         repository.save(report);
         return Data.of(oldData, newData);
+    }
+
+    public Data update(Long id, ReportUpdateRequest request) {
+        Report foundReport = repository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Report not found with id: " + id));
+
+        Report updatedReport = entityMappers.fromUpdateRequest.apply(request);
+        repository.save(updatedReport);
+
+        return Data.of(Pair.of("old", foundReport), Pair.of("new", updatedReport));
     }
 
     public void deleteById(Long id) {

@@ -1,6 +1,5 @@
 import '@mantine/core/styles.css';
 import {AppShell, MantineProvider} from '@mantine/core';
-import { Router } from './Router';
 import { theme } from './theme';
 import Header from "@/components/appShell/Header";
 import Navbar from "@/components/appShell/Navbar";

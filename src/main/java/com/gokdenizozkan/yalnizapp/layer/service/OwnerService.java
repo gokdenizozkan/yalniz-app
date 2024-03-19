@@ -50,6 +50,7 @@ public class OwnerService {
                 .orElseThrow(() -> new ResourceNotFoundException("Owner not found with id " + id));
 
         Owner savedOwner = entityMappers.fromUpdateRequest.apply(request);
+        savedOwner.setId(foundOwner.getId());
         repository.save(savedOwner);
 
         return Data.of(Pair.of("old", foundOwner), Pair.of("new", savedOwner));

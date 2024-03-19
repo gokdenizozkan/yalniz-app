@@ -16,7 +16,8 @@ public class VaccinationResponseMapper implements Function<Vaccination, Vaccinat
                 vaccination.getCode(),
                 vaccination.getAdministrationDate(),
                 vaccination.getExpirationDate(),
-                vaccination.getPet().getId()
+                vaccination.getPet().getId(),
+                vaccination.getReport().getId()
         );
     }
 }

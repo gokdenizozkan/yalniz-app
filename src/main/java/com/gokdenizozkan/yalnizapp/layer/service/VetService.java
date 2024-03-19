@@ -5,6 +5,7 @@ import com.gokdenizozkan.yalnizapp.config.exception.ResourceNotFoundException;
 import com.gokdenizozkan.yalnizapp.config.response.Data;
 import com.gokdenizozkan.yalnizapp.dto.vet.VetEntityMappers;
 import com.gokdenizozkan.yalnizapp.dto.vet.request.VetSaveRequest;
+import com.gokdenizozkan.yalnizapp.dto.vet.request.VetUpdateRequest;
 import com.gokdenizozkan.yalnizapp.entity.Vet;
 import com.gokdenizozkan.yalnizapp.layer.repository.VetRepository;
 import lombok.RequiredArgsConstructor;
@@ -32,11 +33,11 @@ public class VetService {
         return repository.save(vet);
     }
 
-    public Data update(Long id, VetSaveRequest request) {
+    public Data update(Long id, VetUpdateRequest request) {
         Vet foundVet = repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Vet not found with id " + id));
 
-        Vet updatedVet = entityMappers.fromSaveRequest.apply(request);
+        Vet updatedVet = entityMappers.fromUpdateRequest.apply(request);
         repository.save(updatedVet);
 
         return Data.of(Pair.of("old", foundVet), Pair.of("new", updatedVet));

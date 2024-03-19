@@ -1,7 +1,14 @@
+import {VetsTable} from "@/components/vet/VetsTable";
+import {Container} from "@mantine/core";
+import SaveVetModalButton from "@/components/vet/modal/SaveVetModalButton";
+
 function VetsPage() {
   return (
     <div>
-      <h1>Vets</h1>
+      <Container>
+        <SaveVetModalButton/>
+        <VetsTable/>
+      </Container>
     </div>
   );
 }

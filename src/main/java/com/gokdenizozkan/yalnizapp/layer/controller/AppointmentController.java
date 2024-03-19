@@ -6,6 +6,7 @@ import com.gokdenizozkan.yalnizapp.dto.appointment.request.AppointmentUpdateRequ
 import com.gokdenizozkan.yalnizapp.layer.responser.AppointmentResponser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,12 +20,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/v2/appointments")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:5173")
 public class AppointmentController {
     private final AppointmentResponser responser;
 
     @GetMapping
     public ResponseEntity<StructuredResponse> findAll() {
         return responser.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<StructuredResponse> findById(@PathVariable Long id) {
+        return responser.findById(id);
     }
 
     @GetMapping("/of-vet/{vetId}")
@@ -37,9 +44,9 @@ public class AppointmentController {
         return responser.findAllByPetIdAndStartBetween(petId, startDate, endDate);
     }
 
-    @PutMapping
-    public ResponseEntity<StructuredResponse> update(@RequestBody AppointmentUpdateRequest request) {
-        return responser.update(request);
+    @PutMapping("/{id}")
+    public ResponseEntity<StructuredResponse> update(@PathVariable Long id, @RequestBody AppointmentUpdateRequest request) {
+        return responser.update(id, request);
     }
 
     @PostMapping

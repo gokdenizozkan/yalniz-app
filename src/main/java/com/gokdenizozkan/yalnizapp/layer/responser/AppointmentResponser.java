@@ -42,8 +42,8 @@ public class AppointmentResponser {
         return StructuredResponseEntityBuilder.success(appointmentResponses);
     }
 
-    public ResponseEntity<StructuredResponse> update(AppointmentUpdateRequest request) {
-        Data data = service.update(request);
+    public ResponseEntity<StructuredResponse> update(Long id, AppointmentUpdateRequest request) {
+        Data data = service.update(id, request);
         data.map(dtoMappers.toResponse);
         return StructuredResponseEntityBuilder.success(data.get());
     }
@@ -56,5 +56,10 @@ public class AppointmentResponser {
     public ResponseEntity<StructuredResponse> deleteById(Long id) {
         service.deleteById(id);
         return StructuredResponseEntityBuilder.success();
+    }
+
+    public ResponseEntity<StructuredResponse> findById(Long id) {
+        Appointment appointment = service.findById(id);
+        return StructuredResponseEntityBuilder.success(dtoMappers.toResponse.apply(appointment));
     }
 }

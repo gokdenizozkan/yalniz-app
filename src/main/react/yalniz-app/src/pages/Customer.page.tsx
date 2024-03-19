@@ -13,7 +13,7 @@ function CustomerPage() {
   useEffect(() => {
     findById(+id)
       // @ts-ignore
-      .then((result) => setCustomer(result.data))
+      .then((result) => setCustomer(result.data.data))
       .catch(error => console.error('Error fetching customer', error, '\n\tid:', id));
   }, [id]);
 

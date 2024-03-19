@@ -12,7 +12,7 @@ function UpdateCustomerModalActionIcon({customerId = -1}) {
   const readyForm = () => {
     if (customerId !== -1) {
       findById(customerId)
-        .then(response => customerForm.setValues(response.data))
+        .then(response => customerForm.setValues(response.data.data))
         .catch(console.error);
       open();
     }

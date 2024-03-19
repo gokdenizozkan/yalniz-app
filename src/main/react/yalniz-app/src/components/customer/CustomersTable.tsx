@@ -46,9 +46,9 @@ export function CustomersTable() {
         <Group gap={0} justify="flex-end">
           <UpdateCustomerModalActionIcon customerId={item.id}/>
 
-          <SavePetModalMenuItem />
+          <SavePetModalMenuItem customerId={item.id} />
 
-          <AddAppointmentModalActionIcon ownerId={item.id}/>
+          <AddAppointmentModalActionIcon customerId={item.id}/>
 
           <ActionIcon onClick={() => deleteRecord(+item.id)} variant="subtle" color="red">
             <IconTrash style={{width: rem(22), height: rem(22)}} stroke={1.5}/>
@@ -66,7 +66,7 @@ export function CustomersTable() {
   useEffect(() => {
     if (firstRun.current) {
       firstRun.current = false;
-      mockDataLoader(setData);
+      loadAllData(setData);
     }
   }, [data]);
 
@@ -87,21 +87,7 @@ function loadData(dataToLoad:any, setData:any) {
 }
 
 function loadAllData(setData:any) {
-  setData(findAll()
-    .then(response => response.data)
-    .catch(error => console.error('Error loading customers', error)));
-}
-
-function mockDataLoader(setData: any) {
-  setData([
-    {
-      id: 1,
-      name: 'Abdullah',
-      phone: '+9012345678',
-      email: 'abd@gmail.com',
-      address: 'Giresun Mah.',
-      city: 'Ankara',
-      pets: [],
-    },
-  ]);
+  findAll()
+    .then(response => setData(response.data.data))
+    .catch(error => console.error('Error loading customers', error));
 }

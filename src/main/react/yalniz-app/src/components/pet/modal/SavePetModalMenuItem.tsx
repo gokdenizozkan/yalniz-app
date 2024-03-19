@@ -7,12 +7,12 @@ import {IconCat} from "@tabler/icons-react";
 import React, {useState} from "react";
 import {DatePickerInput} from "@mantine/dates";
 
-function SavePetModalMenuItem({ownerId=-1}) {
+function SavePetModalMenuItem({customerId = -1}) {
   const [opened, {open, close}] = useDisclosure(false);
   const [birthdate, setBirthdate] = useState<Date | null>(null);
 
   let initialPet = new PetSaveRequest();
-  initialPet.ownerId = ownerId;
+  initialPet.ownerId = customerId;
 
   const petForm = useForm(
     {

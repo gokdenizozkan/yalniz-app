@@ -10,6 +10,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -28,8 +30,10 @@ public class Appointment {
     private Long id;
 
     @Column(name = "start_date")
+    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime start;
     @Column(name = "end_date")
+    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime end;
 
     @ManyToOne(fetch = FetchType.LAZY)

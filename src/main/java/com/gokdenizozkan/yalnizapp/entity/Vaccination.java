@@ -11,6 +11,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -30,8 +32,10 @@ public class Vaccination {
     private String name;
     private String code;
     @Column(name = "administration_date")
+    @Temporal(TemporalType.DATE)
     private LocalDate administrationDate;
     @Column(name = "expiration_date")
+    @Temporal(TemporalType.DATE)
     private LocalDate expirationDate;
 
     @ManyToOne(fetch = FetchType.LAZY)

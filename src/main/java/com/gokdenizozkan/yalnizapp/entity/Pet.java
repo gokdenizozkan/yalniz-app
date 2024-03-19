@@ -12,6 +12,8 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -36,6 +38,7 @@ public class Pet {
     private String breed;
     private String gender;
     private String color;
+    @Temporal(TemporalType.DATE)
     private LocalDate birthdate;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

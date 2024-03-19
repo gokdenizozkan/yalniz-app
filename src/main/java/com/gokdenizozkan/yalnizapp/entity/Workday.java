@@ -10,6 +10,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -27,6 +29,7 @@ public class Workday {
     @SequenceGenerator(name = "WORKDAY_SEQ_GENERATOR", sequenceName = "WORKDAY_SEQ")
     private Long id;
 
+    @Temporal(TemporalType.DATE)
     private LocalDate date;
 
     @ManyToOne(fetch = FetchType.LAZY)

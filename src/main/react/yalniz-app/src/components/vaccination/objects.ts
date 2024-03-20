@@ -18,6 +18,7 @@ export class VaccinationSaveRequest {
 }
 
 export class VaccinationUpdateRequest {
+  id: number = 0;
   name: string = "";
   code: string = "";
   administrationDate: string = "YYYY-MM-DD"

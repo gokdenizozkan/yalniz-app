@@ -21,7 +21,7 @@ export function ReportsTable() {
       <Table.Td>
         <Group gap="sm">
           <div>
-            <Text onClick={() => navigate(`/vets/${item.id}`)} fz="sm" fw={500}>{item.title}</Text>
+            <Text onClick={() => navigate(`/reports/${item.id}`)} fz="sm" fw={500}>{item.title}</Text>
             <Text c="dimmed" fz="xs">{item.cost}</Text>
           </div>
         </Group>
@@ -68,11 +68,6 @@ export function ReportsTable() {
     </>
   );
 }
-
-function loadData(dataToLoad:any, setData:any) {
-  setData(dataToLoad);
-}
-
 function loadAllData(setData:any) {
   findAll()
     .then(response => setData(response.data.data))

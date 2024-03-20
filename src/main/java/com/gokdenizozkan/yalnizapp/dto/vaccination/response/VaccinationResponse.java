@@ -9,10 +9,8 @@ public record VaccinationResponse(
         Long id,
         String name,
         String code,
-        @Temporal(TemporalType.DATE)
-        LocalDate administrationDate,
-        @Temporal(TemporalType.DATE)
-        LocalDate expirationDate,
+        String administrationDate,
+        String expirationDate,
         Long petId,
         Long reportId
 ) {}

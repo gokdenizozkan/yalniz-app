@@ -9,6 +9,7 @@ import VetsPage from "@/pages/Vets.page";
 import NotFoundPage from "@/pages/NotFound.page";
 import CustomerPage from "@/pages/Customer.page";
 import VetPage from "@/pages/Vet.page";
+import ReportPage from "@/pages/Report.page";
 
 function RouterSwitcher() {
   return (
@@ -24,6 +25,7 @@ function RouterSwitcher() {
 
       <Route path={"/customers/:id"} element={<CustomerPage />}/>
       <Route path={"/vets/:id"} element={<VetPage />}/>
+      <Route path={"/reports/:id"} element={<ReportPage />}/>
     </Routes>
   )
 }

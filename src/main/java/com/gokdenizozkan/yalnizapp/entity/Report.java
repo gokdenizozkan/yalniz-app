@@ -35,6 +35,6 @@ public class Report {
     @JoinColumn(name = "appointment_id", referencedColumnName = "id")
     private Appointment appointment;
 
-    @OneToMany(mappedBy = "report", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @OneToMany(mappedBy = "report", cascade = CascadeType.ALL)
     private List<Vaccination> vaccinations;
 }

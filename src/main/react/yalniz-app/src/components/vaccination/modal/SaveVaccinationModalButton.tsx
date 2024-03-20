@@ -44,7 +44,7 @@ function SaveVaccinationModalButton({reportId = -1, appointmentId = -1}) {
     request.expirationDate = expirationDate?.toISOString() as string;
     request.petId = petId as number;
     request.reportId = reportId;
-    
+
     save(request)
       .then(() => {
         console.log("Vaccination saved successfully");

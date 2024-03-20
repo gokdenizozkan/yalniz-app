@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -24,13 +25,18 @@ public class VetController {
     private final VetResponser responser;
 
     @GetMapping
-    public ResponseEntity<StructuredResponse> findAllVets() {
+    public ResponseEntity<StructuredResponse> findAll() {
         return responser.findAll();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<StructuredResponse> findVetById(@PathVariable Long id) {
+    public ResponseEntity<StructuredResponse> findById(@PathVariable Long id) {
         return responser.findById(id);
+    }
+
+    @GetMapping("/{id}/with-workdays")
+    public ResponseEntity<StructuredResponse> findByIdWithWorkdays(@PathVariable Long id) {
+        return responser.findByIdWithWorkdays(id);
     }
 
     @PostMapping

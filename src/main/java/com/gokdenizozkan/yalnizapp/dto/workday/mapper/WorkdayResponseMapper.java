@@ -12,7 +12,7 @@ public class WorkdayResponseMapper implements Function<Workday, WorkdayResponse>
         public WorkdayResponse apply(Workday workday) {
             return new WorkdayResponse(
                     workday.getId(),
-                    workday.getDate(),
+                    workday.getDate().toString(),
                     workday.getVet().getId()
             );
         }

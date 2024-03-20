@@ -1,27 +1,20 @@
 import {Avatar, Table, Group, Text, ActionIcon, rem} from '@mantine/core';
 import {
-  IconTrash,
-  IconUser,
+  IconTrash
 } from '@tabler/icons-react';
 import React, {useEffect, useRef, useState} from "react";
 import {ReportResponse} from "@/components/report/objects";
-import {deleteById, findAll, search} from "@/components/report/ReportService";
-import UpdateVetModalActionIcon from "@/components/report/modal/UpdateReportModalActionIcon";
+import {deleteById, findAll} from "@/components/report/ReportService";
 import {useNavigate} from "react-router-dom";
 import UpdateReportModalActionIcon from "@/components/report/modal/UpdateReportModalActionIcon";
 import SaveVaccinationModalButton from "@/components/vaccination/modal/SaveVaccinationModalButton";
 
 export function ReportsTable() {
   const navigate = useNavigate();
-  const searchVet = (name:string) => {
-    search(name)
-      .then(response => loadData(response.data, setData))
-      .catch(error => console.error('Error searching Report', error, '\n\tsearched for:', name));
-  };
   const deleteRecord = (id:number) => {
     deleteById(id)
       .then(() => console.log('Report deleted successfully'))
-      .catch((error) => console.error('Error deleting Report', error));
+      .catch((error) => console.error('Error deleting Report with id', id, error));
   }
   const tableFormer = (item:ReportResponse) => (
     <Table.Tr key={item.id}>

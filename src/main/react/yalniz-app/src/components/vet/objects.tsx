@@ -1,3 +1,5 @@
+import {WorkdayResponse} from "@/components/vet/workday/objects";
+
 export class VetResponse {
   id=0
   name=""
@@ -5,6 +7,16 @@ export class VetResponse {
   email=""
   address=""
   city=""
+}
+
+export class VetResponseWithWorkdays {
+  id=0
+  name=""
+  phone=""
+  email=""
+  address=""
+  city=""
+  workdays= [new WorkdayResponse()]
 }
 
 export class VetSaveRequest {

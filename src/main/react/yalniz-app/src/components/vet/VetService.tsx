@@ -12,6 +12,10 @@ export async function findById(id: number) {
   return await axios.get(`${API_URL}/${id}`)
 }
 
+export async function findByIdWithWorkdays(id: number) {
+  return await axios.get(`${API_URL}/${id}/with-workdays`)
+}
+
 export async function search(name: string) {
   return await axios.get(`${API_URL}/search?name=${name}`)
 }

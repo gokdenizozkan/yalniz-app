@@ -7,8 +7,7 @@ import java.time.LocalDate;
 
 public record WorkdayResponse(
         Long id,
-        @Temporal(TemporalType.DATE)
-        LocalDate date,
+        String date,
         Long vetId
 ) {
 }

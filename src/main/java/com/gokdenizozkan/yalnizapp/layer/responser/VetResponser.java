@@ -7,6 +7,7 @@ import com.gokdenizozkan.yalnizapp.dto.vet.VetDtoMappers;
 import com.gokdenizozkan.yalnizapp.dto.vet.request.VetSaveRequest;
 import com.gokdenizozkan.yalnizapp.dto.vet.request.VetUpdateRequest;
 import com.gokdenizozkan.yalnizapp.dto.vet.response.VetResponse;
+import com.gokdenizozkan.yalnizapp.dto.vet.response.VetResponseWithWorkdays;
 import com.gokdenizozkan.yalnizapp.entity.Vet;
 import com.gokdenizozkan.yalnizapp.layer.service.VetService;
 import lombok.RequiredArgsConstructor;
@@ -48,5 +49,11 @@ public class VetResponser {
     public ResponseEntity<StructuredResponse> deleteById(Long id) {
         service.deleteById(id);
         return StructuredResponseEntityBuilder.success();
+    }
+
+    public ResponseEntity<StructuredResponse> findByIdWithWorkdays(Long id) {
+        Vet vet = service.findById(id);
+        VetResponseWithWorkdays response = dtoMappers.toResponseWithWorkdays.apply(vet);
+        return StructuredResponseEntityBuilder.success(response);
     }
 }

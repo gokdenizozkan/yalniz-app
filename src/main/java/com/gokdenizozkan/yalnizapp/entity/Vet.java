@@ -32,9 +32,9 @@ public class Vet {
     private String address;
     private String city;
 
-    @OneToMany(mappedBy = "vet", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "vet", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Appointment> appointments;
 
-    @OneToMany(mappedBy = "vet", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "vet", cascade = {CascadeType.ALL}, orphanRemoval = true)
     private List<Workday> workdays;
 }

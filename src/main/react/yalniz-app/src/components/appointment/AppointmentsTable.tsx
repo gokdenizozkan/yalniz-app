@@ -12,6 +12,7 @@ import {useNavigate} from "react-router-dom";
 import {PetResponse} from "@/components/pet/objects";
 import {VetResponse} from "@/components/vet/objects";
 import UpdateAppointmentModalActionIcon from "@/components/appointment/modal/UpdateAppointmentModalActionIcon";
+import SaveReportModalActionIcon from "@/components/report/modal/SaveReportModalActionIcon";
 
 export function AppointmentsTable() {
   const navigate = useNavigate();
@@ -44,6 +45,8 @@ export function AppointmentsTable() {
         <Group gap={0} justify="flex-end">
 
           <UpdateAppointmentModalActionIcon appointmentId={item.id} />
+
+          <SaveReportModalActionIcon appointmentId={item.id} />
 
           <ActionIcon onClick={() => deleteRecord(+item.id)} variant="subtle" color="red">
             <IconTrash style={{width: rem(22), height: rem(22)}} stroke={1.5}/>

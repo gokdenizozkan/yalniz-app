@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -39,8 +38,8 @@ public class VaccinationService {
         return repository.findAllByExpirationDateBetween(startDate, endDate);
     }
 
-    public Vaccination saveForPet(Long petId, VaccinationSaveRequest request) {
-        if (repository.existsVaccinationCurrentlyIntact(petId, request.code(), request.administrationDate())) {
+    public Vaccination save(VaccinationSaveRequest request) {
+        if (repository.existsVaccinationCurrentlyIntact(request.petId(), request.code(), request.administrationDate())) {
             throw new IllegalArgumentException("Vaccination already intact!");
         }
 

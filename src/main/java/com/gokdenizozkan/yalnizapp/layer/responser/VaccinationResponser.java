@@ -46,8 +46,8 @@ public class VaccinationResponser {
         return StructuredResponseEntityBuilder.success(responses);
     }
 
-    public ResponseEntity<StructuredResponse> saveForPet(Long petId, VaccinationSaveRequest request) {
-        Vaccination vaccination = service.saveForPet(petId, request);
+    public ResponseEntity<StructuredResponse> save(VaccinationSaveRequest request) {
+        Vaccination vaccination = service.save(request);
         VaccinationResponse response = dtoMappers.toResponse.apply(vaccination);
         return StructuredResponseEntityBuilder.success(response);
     }

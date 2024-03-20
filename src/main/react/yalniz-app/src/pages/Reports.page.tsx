@@ -1,7 +1,12 @@
+import {ReportsTable} from "@/components/report/ReportsTable";
+import {Container} from "@mantine/core";
+
 function ReportsPage() {
   return (
     <div>
-      <h1>Reports</h1>
+      <Container>
+        <ReportsTable/>
+      </Container>
     </div>
   );
 }

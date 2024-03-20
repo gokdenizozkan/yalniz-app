@@ -1,8 +1,8 @@
 import axios from "axios";
 import {API_URL as URL} from "@/config";
-import {VaccinationSaveRequest, VaccinationUpdateRequest} from "@/components/vaccination/objects";
+import {ReportSaveRequest, ReportUpdateRequest} from "@/components/report/objects";
 
-const API_URL = URL + "vaccinations";
+const API_URL = URL + "reports";
 
 export async function findAll() {
   return await axios.get(API_URL)
@@ -20,11 +20,11 @@ export async function findPetsById(id: number) {
   return await axios.get(`${API_URL}/${id}/pets`)
 }
 
-export async function save(values: VaccinationSaveRequest) {
+export async function save(values: ReportSaveRequest) {
   return await axios.post(API_URL, values)
 }
 
-export async function update(id: number, values: VaccinationUpdateRequest) {
+export async function update(id: number, values: ReportUpdateRequest) {
   return await axios.put(`${API_URL}/${id}`, values)
 }
 

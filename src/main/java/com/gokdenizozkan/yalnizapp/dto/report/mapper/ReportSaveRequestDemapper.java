@@ -7,6 +7,7 @@ import com.gokdenizozkan.yalnizapp.layer.repository.AppointmentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.function.Function;
 
 @Component
@@ -23,6 +24,7 @@ public class ReportSaveRequestDemapper implements Function<ReportSaveRequest, Re
         report.setCost(reportSaveRequest.cost());
         report.setAppointment(appointmentRepository.findById(reportSaveRequest.appointmentId())
                 .orElseThrow(() -> new ResourceNotFoundException("Appointment not found with id: " + reportSaveRequest.appointmentId())));
+        report.setVaccinations(new ArrayList<>());
 
         return report;
     }

@@ -46,9 +46,9 @@ public class VaccinationController {
         return responser.findAllEndingSoon(startDate, endDate);
     }
 
-    @PostMapping("/of-pet/{petId}")
-    public ResponseEntity<StructuredResponse> saveForPet(@PathVariable Long petId, @RequestBody VaccinationSaveRequest request) {
-        return responser.saveForPet(petId, request);
+    @PostMapping
+    public ResponseEntity<StructuredResponse> save(@RequestBody VaccinationSaveRequest request) {
+        return responser.save(request);
     }
 
     @PutMapping("/{id}")

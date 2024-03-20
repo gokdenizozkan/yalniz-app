@@ -1,11 +1,34 @@
-import { useDisclosure } from '@mantine/hooks';
-import {Modal, Button, Box, TextInput, Checkbox, Group, Textarea} from '@mantine/core';
+import {useDisclosure} from '@mantine/hooks';
+import {Modal, Button, Box, TextInput, Checkbox, Group, Textarea, ActionIcon, rem} from '@mantine/core';
 import {useForm} from "@mantine/form";
 import {save} from "@/components/vaccination/VaccinationService";
 import {VaccinationSaveRequest} from "@/components/vaccination/objects";
+import {DatePickerInput} from "@mantine/dates";
+import {useEffect, useRef, useState} from "react";
+import {IconCalendarPlus, IconMedicineSyrup} from "@tabler/icons-react";
+import {PetResponse} from "@/components/pet/objects";
+import {findById} from "@/components/report/ReportService";
+import {findById as findAppointmentById} from "@/components/appointment/AppointmentService";
+import {ReportResponse} from "@/components/report/objects";
 
-function SaveVaccinationModalButton() {
-  const [opened, { open, close }] = useDisclosure(false);
+function SaveVaccinationModalButton({reportId = -1, appointmentId = -1}) {
+  const [opened, {open, close}] = useDisclosure(false);
+  const [administrationDate, setAdministrationDate] = useState<Date | null>(null);
+  const [expirationDate, setExpirationDate] = useState<Date | null>(null);
+
+  const [report, setReport] = useState<ReportResponse>();
+  const [petId, setPetId] = useState<number>();
+
+  useEffect(() => {
+    if (!opened) {
+      return;
+    }
+    findAppointmentById(appointmentId as number)
+      .then(response => setPetId(response.data.data.petId))
+      .catch(error => console.error('Error fetching Appointment with id ', report?.appointmentId, '\n', error));
+  }, [opened]);
+
+
 
   const vaccinationForm = useForm(
     {
@@ -14,30 +37,36 @@ function SaveVaccinationModalButton() {
   );
 
   const onSubmit = (values: VaccinationSaveRequest) => {
-    save(values)
+    const request = new VaccinationSaveRequest();
+    request.name = values.name;
+    request.code = values.code;
+    request.administrationDate = administrationDate?.toISOString() as string;
+    request.expirationDate = expirationDate?.toISOString() as string;
+    request.petId = petId as number;
+    request.reportId = reportId;
+    
+    save(request)
       .then(() => {
-        console.log("Vet saved successfully");
+        console.log("Vaccination saved successfully");
       })
       .catch((error: any) => {
-        console.error("Error saving Vet", error);
+        console.error("Error saving Vaccination", error);
       })
       .finally(() => console.log("FINITO"));
   }
 
   return (
     <>
-      <Modal opened={opened} onClose={close} title="Register New Vet" centered>
+      <Modal opened={opened} onClose={close} title="Register New Vaccination" centered>
         <Box maw={340} mx="auto">
-          <form onSubmit={vaccinationForm.onSubmit( (values) => onSubmit(values))}>
-            <TextInput withAsterisk label="Name" placeholder="Hold the Door" {...vaccinationForm.getInputProps('name')} />
-            <TextInput withAsterisk label="Code" placeholder="+9059988877665544" {...vaccinationForm.getInputProps('code')} />
-            <Textarea withAsterisk label="Address" placeholder="James Sunderland Street, Hilly Hill/Silent Hill" {...vaccinationForm.getInputProps('address')} />
-
-            <Checkbox
-              mt="md"
-              label="I agree to sell my privacy"
-              {...vaccinationForm.getInputProps('termsOfService', { type: 'checkbox' })}
-            />
+          <form onSubmit={vaccinationForm.onSubmit((values) => onSubmit(values))}>
+            <TextInput withAsterisk label="Name"
+                       placeholder="Hold the Door" {...vaccinationForm.getInputProps('name')} />
+            <TextInput withAsterisk label="Code" placeholder="ASAM-54X" {...vaccinationForm.getInputProps('code')} />
+            <DatePickerInput label="Administration Date" placeholder="YYYY-MM-DD" value={administrationDate}
+                             onChange={(v) => setAdministrationDate(v)}/>
+            <DatePickerInput label="Expiration Date" placeholder="YYYY-MM-DD" value={expirationDate}
+                             onChange={(v) => setExpirationDate(v)}/>
 
             <Group justify="flex-end" mt="md">
               <Button type="submit">Submit</Button>
@@ -46,7 +75,9 @@ function SaveVaccinationModalButton() {
         </Box>
       </Modal>
 
-      <Button onClick={open}>Register Vet</Button>
+      <ActionIcon onClick={open} variant="subtle" color="brown">
+        <IconMedicineSyrup style={{width: rem(22), height: rem(22)}} stroke={1.5}/>
+      </ActionIcon>
     </>
   );
 }

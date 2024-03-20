@@ -4,47 +4,46 @@ import {
   IconUser,
 } from '@tabler/icons-react';
 import React, {useEffect, useRef, useState} from "react";
-import {VaccinationResponse} from "@/components/vaccination/objects";
-import {deleteById, findAll, search} from "@/components/vaccination/VaccinationService";
-import UpdateVetModalActionIcon from "@/components/vaccination/modal/UpdateVaccinationModalActionIcon";
-import {InputWithButton} from "@/components/firstParty/InputWithButton";
+import {ReportResponse} from "@/components/report/objects";
+import {deleteById, findAll, search} from "@/components/report/ReportService";
+import UpdateVetModalActionIcon from "@/components/report/modal/UpdateReportModalActionIcon";
 import {useNavigate} from "react-router-dom";
-import AddWorkdayModalActionIcon from "@/components/vaccination/workday/modal/AddWorkdayModalActionIcon";
+import UpdateReportModalActionIcon from "@/components/report/modal/UpdateReportModalActionIcon";
+import SaveVaccinationModalButton from "@/components/vaccination/modal/SaveVaccinationModalButton";
 
 export function ReportsTable() {
   const navigate = useNavigate();
   const searchVet = (name:string) => {
     search(name)
       .then(response => loadData(response.data, setData))
-      .catch(error => console.error('Error searching Vet', error, '\n\tsearched for:', name));
+      .catch(error => console.error('Error searching Report', error, '\n\tsearched for:', name));
   };
   const deleteRecord = (id:number) => {
     deleteById(id)
-      .then(() => console.log('Vet deleted successfully'))
-      .catch((error) => console.error('Error deleting  Vet', error));
+      .then(() => console.log('Report deleted successfully'))
+      .catch((error) => console.error('Error deleting Report', error));
   }
-  const tableFormer = (item:any) => (
+  const tableFormer = (item:ReportResponse) => (
     <Table.Tr key={item.id}>
       <Table.Td>
         <Group gap="sm">
-          <Avatar size={40} src={IconUser.toString()} radius={40}/>
           <div>
-            <Text onClick={() => navigate(`/vets/${item.id}`)} fz="sm" fw={500}>{item.name}</Text>
-            <Text c="dimmed" fz="xs">{item.phone}</Text>
+            <Text onClick={() => navigate(`/vets/${item.id}`)} fz="sm" fw={500}>{item.title}</Text>
+            <Text c="dimmed" fz="xs">{item.cost}</Text>
           </div>
         </Group>
       </Table.Td>
 
       <Table.Td>
-        <Text fz="sm">{item.email}</Text>
-        <Text fz="xs" c="dimmed">Email</Text>
+        <Text fz="sm">{item.diagnosis}</Text>
+        <Text fz="xs" c="dimmed">Diagnosis</Text>
       </Table.Td>
 
       <Table.Td>
         <Group gap={0} justify="flex-end">
-          <UpdateVetModalActionIcon vetId={item.id}/>
+          <UpdateReportModalActionIcon reportId={item.id}/>
 
-          <AddWorkdayModalActionIcon vetId={item.id} />
+          <SaveVaccinationModalButton reportId={item.id} appointmentId={item.appointmentId} />
 
           <ActionIcon onClick={() => deleteRecord(+item.id)} variant="subtle" color="red">
             <IconTrash style={{width: rem(22), height: rem(22)}} stroke={1.5}/>
@@ -55,7 +54,7 @@ export function ReportsTable() {
     </Table.Tr>
   );
 
-  const [data, setData] = useState([] as VetResponse[]);
+  const [data, setData] = useState([] as ReportResponse[]);
   const rows = data.map(item => tableFormer(item));
 
   const firstRun = useRef(true);
@@ -68,7 +67,6 @@ export function ReportsTable() {
 
   return (
     <>
-      <InputWithButton placeholder="Search Vets" runnableOnSubmit={searchVet}/>
       <Table.ScrollContainer minWidth={800}>
       <Table verticalSpacing="md">
         <Table.Tbody>{rows}</Table.Tbody>

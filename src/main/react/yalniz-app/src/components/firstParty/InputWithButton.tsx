@@ -13,15 +13,17 @@ export function InputWithButton({runnableOnSubmit = (input:any) => {}, placehold
           runnableOnSubmit(value);
         }}
       }
-      onSubmit={runnableOnSubmit}
-      onChange={(event) => setValue(event.currentTarget.value)}
+      onSubmit={() => runnableOnSubmit(value)}
+      onChange={(event) => {
+        setValue(event.target.value);
+      }}
       radius="xl"
       size="md"
       placeholder={placeholder}
       rightSectionWidth={42}
       leftSection={<IconSearch style={{ width: rem(18), height: rem(18) }} stroke={1.5} />}
       rightSection={
-        <ActionIcon onClick={runnableOnSubmit} size={32} radius="xl" color={theme.primaryColor} variant="filled">
+        <ActionIcon onClick={() => runnableOnSubmit(value)} size={32} radius="xl" color={theme.primaryColor} variant="filled">
           <IconArrowRight style={{ width: rem(18), height: rem(18) }} stroke={1.5} />
         </ActionIcon>
       }

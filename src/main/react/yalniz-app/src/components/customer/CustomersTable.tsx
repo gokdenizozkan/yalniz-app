@@ -16,8 +16,9 @@ import AddAppointmentModalActionIcon from "@/components/appointment/modal/AddApp
 export function CustomersTable() {
   const navigate = useNavigate();
   const searchCustomer = (name:string) => {
+    console.log(name, '<- name');
     search(name)
-      .then(response => loadData(response.data, setData))
+      .then(response => loadData(response.data.data, setData))
       .catch(error => console.error('Error searching customer', error, '\n\tsearched for:', name));
   };
   const deleteRecord = (id:number) => {

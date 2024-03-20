@@ -12,21 +12,21 @@ import {InputWithButton} from "@/components/firstParty/InputWithButton";
 import {useNavigate} from "react-router-dom";
 import SavePetModalMenuItem from "@/components/pet/modal/SavePetModalMenuItem";
 import AddAppointmentModalActionIcon from "@/components/appointment/modal/AddAppointmentModalActionIcon";
+import {showModal} from "@/App";
 
 export function CustomersTable() {
   const navigate = useNavigate();
   const searchCustomer = (name:string) => {
-    console.log(name, '<- name');
     search(name)
       .then(response => loadData(response.data.data, setData))
-      .catch(error => console.error('Error searching customer', error, '\n\tsearched for:', name));
+      .catch(error => showModal("Error", "Error searching customers"));
   };
   const deleteRecord = (id:number) => {
     deleteById(id)
       .then(() => console.log('Customer deleted successfully'))
-      .catch((error) => console.error('Error deleting customer', error));
+      .catch((error) => showModal("Error", "Error deleting customer"));
   }
-  const tableFormer = (item:any) => (
+  const tableFormer = (item:CustomerResponse) => (
     <Table.Tr key={item.id}>
       <Table.Td>
         <Group gap="sm">
@@ -90,5 +90,5 @@ function loadData(dataToLoad:any, setData:any) {
 function loadAllData(setData:any) {
   findAll()
     .then(response => setData(response.data.data))
-    .catch(error => console.error('Error loading customers', error));
+    .catch(error => showModal("Error", "Error loading customers"));
 }

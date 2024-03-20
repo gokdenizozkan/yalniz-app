@@ -4,7 +4,6 @@ import DashboardPage from "@/pages/Dashboard.page";
 import AppointmentsPage from "@/pages/Appointments.page";
 import ReportsPage from "@/pages/Reports.page";
 import CustomersPage from "@/pages/Customers.page";
-import PetsPage from "@/pages/Pets.page";
 import VetsPage from "@/pages/Vets.page";
 import NotFoundPage from "@/pages/NotFound.page";
 import CustomerPage from "@/pages/Customer.page";
@@ -20,7 +19,6 @@ function RouterSwitcher() {
       <Route path={"/appointments"} element={<AppointmentsPage />} />
       <Route path={"/reports"} element={<ReportsPage />} />
       <Route path={"/customers"} element={<CustomersPage />} />
-      <Route path={"/pets"} element={<PetsPage />} />
       <Route path={"/vets"} element={<VetsPage />} />
 
       <Route path={"/customers/:id"} element={<CustomerPage />}/>

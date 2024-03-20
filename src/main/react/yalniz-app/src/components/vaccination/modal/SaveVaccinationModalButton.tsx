@@ -10,6 +10,7 @@ import {PetResponse} from "@/components/pet/objects";
 import {findById} from "@/components/report/ReportService";
 import {findById as findAppointmentById} from "@/components/appointment/AppointmentService";
 import {ReportResponse} from "@/components/report/objects";
+import {showModal} from "@/App";
 
 function SaveVaccinationModalButton({reportId = -1, appointmentId = -1}) {
   const [opened, {open, close}] = useDisclosure(false);
@@ -25,7 +26,7 @@ function SaveVaccinationModalButton({reportId = -1, appointmentId = -1}) {
     }
     findAppointmentById(appointmentId as number)
       .then(response => setPetId(response.data.data.petId))
-      .catch(error => console.error('Error fetching Appointment with id ', report?.appointmentId, '\n', error));
+      .catch(error => showModal("Error", error.message));
   }, [opened]);
 
 
@@ -46,13 +47,8 @@ function SaveVaccinationModalButton({reportId = -1, appointmentId = -1}) {
     request.reportId = reportId;
 
     save(request)
-      .then(() => {
-        console.log("Vaccination saved successfully");
-      })
-      .catch((error: any) => {
-        console.error("Error saving Vaccination", error);
-      })
-      .finally(() => console.log("FINITO"));
+      .then(() => console.log("Vaccination saved successfully"))
+      .catch((error: any) => showModal("Error", error.message));
   }
 
   return (

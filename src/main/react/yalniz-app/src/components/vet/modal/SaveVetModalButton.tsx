@@ -3,6 +3,7 @@ import {Modal, Button, Box, TextInput, Checkbox, Group, Textarea} from '@mantine
 import {useForm} from "@mantine/form";
 import {save} from "@/components/vet/VetService";
 import {VetSaveRequest} from "@/components/vet/objects";
+import {showModal} from "@/App";
 
 function SaveVetModalButton() {
   const [opened, { open, close }] = useDisclosure(false);
@@ -15,13 +16,8 @@ function SaveVetModalButton() {
 
   const onSubmit = (values: VetSaveRequest) => {
     save(values)
-      .then(() => {
-        console.log("Vet saved successfully");
-      })
-      .catch((error: any) => {
-        console.error("Error saving Vet", error);
-      })
-      .finally(() => console.log("FINITO"));
+      .then(() => console.log("Vet saved successfully"))
+      .catch((error: any) => showModal("Error", error.message));
   }
 
   return (

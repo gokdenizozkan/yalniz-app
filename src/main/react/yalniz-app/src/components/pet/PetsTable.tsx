@@ -5,13 +5,14 @@ import {PetResponse} from "@/components/pet/objects";
 import {deleteById} from "@/components/pet/PetService";
 import {useNavigate} from "react-router-dom";
 import UpdatePetModalActionIcon from "@/components/pet/modal/UpdatePetModalActionIcon";
+import {showModal} from "@/App";
 
 export default function PetsTable({pets = [new PetResponse()]}) {
   const navigate = useNavigate();
   const deleteRecord = (id: number) => {
     deleteById(id)
       .then(() => console.log('Vaccination deleted successfully'))
-      .catch((error) => console.error('Error deleting  Vaccination', error));
+      .catch((error) => showModal("Error deleting pet", `Could not delete pet with id ${id}`));
   }
   const tableFormer = (item: PetResponse) => (
     <Table.Tr key={item.id}>

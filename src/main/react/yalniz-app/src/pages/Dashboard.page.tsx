@@ -2,7 +2,11 @@ function DashboardPage() {
 
 
   return (
-    <div> Dashboard </div>
+    <div>
+      <h1>DASHBOARD</h1>
+      <p>Welcome to YALNIZ'S PET CEMETERY</p>
+    </div>
+
   );
 }
 

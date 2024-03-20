@@ -5,6 +5,7 @@ import {findById, update} from "@/components/customer/CustomerService";
 import {CustomerUpdateRequest} from "@/components/customer/objects";
 import React from "react";
 import {IconPencil} from "@tabler/icons-react";
+import {showModal} from "@/App";
 
 function UpdateCustomerModalActionIcon({customerId = -1}) {
   const [opened, {open, close}] = useDisclosure(false);
@@ -13,7 +14,7 @@ function UpdateCustomerModalActionIcon({customerId = -1}) {
     if (customerId !== -1) {
       findById(customerId)
         .then(response => customerForm.setValues(response.data.data))
-        .catch(console.error);
+        .catch(() => showModal("Error", "Error finding customer"));
       open();
     }
   }
@@ -29,9 +30,7 @@ function UpdateCustomerModalActionIcon({customerId = -1}) {
       .then(() => {
         console.log("customer updated successfully");
       })
-      .catch((error) => {
-        console.error("Error updating customer", error);
-      })
+      .catch((error) => showModal("Error", "Error updating customer"));
   }
 
   return (

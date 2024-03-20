@@ -4,21 +4,8 @@ import {PetSaveRequest, PetUpdateRequest} from "@/components/pet/objects";
 
 const API_URL = URL + "pets";
 
-export async function findAll() {
-  return await axios.get(API_URL)
-}
-
 export async function findById(id: number) {
   return await axios.get(`${API_URL}/${id}`)
-}
-
-export async function search(name: string) {
-  return await axios.get(`${API_URL}/search?name=${name}`)
-
-}
-
-export async function findPetsById(id: number) {
-  return await axios.get(`${API_URL}/${id}/pets`)
 }
 
 export async function save(values: PetSaveRequest) {

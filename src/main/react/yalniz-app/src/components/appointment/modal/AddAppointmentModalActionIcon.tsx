@@ -21,6 +21,7 @@ import {findAll} from "@/components/vet/VetService";
 import {PetResponse} from "@/components/pet/objects";
 import {VetResponse} from "@/components/vet/objects";
 import {save} from "@/components/appointment/AppointmentService";
+import {showModal} from "@/App";
 
 function AddAppointmentModalActionIcon(this: any, {customerId = -1}) {
   const [opened, {open, close}] = useDisclosure(false);
@@ -37,7 +38,7 @@ function AddAppointmentModalActionIcon(this: any, {customerId = -1}) {
   useEffect(() => {
     if (petFirstUpdate.current) {
       petFirstUpdate.current = false;
-      findPetsById(customerId).then(response => setPets(response.data.data)).catch(console.error);
+      findPetsById(customerId).then(response => setPets(response.data.data)).catch(() => showModal("Error", "Error finding pets"));
       return;
     }
   }, [pets]);
@@ -60,7 +61,7 @@ function AddAppointmentModalActionIcon(this: any, {customerId = -1}) {
   useEffect(() => {
     if (vetFirstUpdate.current) {
       vetFirstUpdate.current = false;
-      findAll().then(response => setVets(response.data.data)).catch(console.error);
+      findAll().then(response => setVets(response.data.data)).catch(() => showModal("Error", "Error finding vets"));
       return;
     }
   }, [vets]);
@@ -89,7 +90,7 @@ function AddAppointmentModalActionIcon(this: any, {customerId = -1}) {
     appointmentForm.values;
     save(appointmentForm.values)
       .then(() => console.log("appointment saved successfully", appointmentForm.values))
-      .catch((error) => console.error("Error saving appointment", error, appointmentForm.values));
+      .catch((error) => showModal("Error", "Error saving appointment"));
   }
 
 

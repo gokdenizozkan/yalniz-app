@@ -7,23 +7,19 @@ import React, {useEffect, useRef, useState} from "react";
 import {VetResponse} from "@/components/vet/objects";
 import {deleteById, findAll, search} from "@/components/vet/VetService";
 import UpdateVetModalActionIcon from "@/components/vet/modal/UpdateVetModalActionIcon";
-import {InputWithButton} from "@/components/firstParty/InputWithButton";
 import {useNavigate} from "react-router-dom";
 import AddWorkdayModalActionIcon from "@/components/vet/workday/modal/AddWorkdayModalActionIcon";
+import {showModal} from "@/App";
 
 export function VetsTable() {
   const navigate = useNavigate();
-  const searchVet = (name:string) => {
-    search(name)
-      .then(response => loadData(response.data, setData))
-      .catch(error => console.error('Error searching Vet', error, '\n\tsearched for:', name));
-  };
   const deleteRecord = (id:number) => {
     deleteById(id)
       .then(() => console.log('Vet deleted successfully'))
-      .catch((error) => console.error('Error deleting  Vet', error));
+      .catch((error) => showModal('Error deleting Vet', error));
   }
-  const tableFormer = (item:any) => (
+
+  const tableFormer = (item:VetResponse) => (
     <Table.Tr key={item.id}>
       <Table.Td>
         <Group gap="sm">
@@ -68,7 +64,6 @@ export function VetsTable() {
 
   return (
     <>
-      <InputWithButton placeholder="Search Vets" runnableOnSubmit={searchVet}/>
       <Table.ScrollContainer minWidth={800}>
       <Table verticalSpacing="md">
         <Table.Tbody>{rows}</Table.Tbody>
@@ -85,5 +80,5 @@ function loadData(dataToLoad:any, setData:any) {
 function loadAllData(setData:any) {
   findAll()
     .then(response => setData(response.data.data))
-    .catch(error => console.error('Error loading Vets', error));
+    .catch(error => showModal('Error loading Vets', error));
 }

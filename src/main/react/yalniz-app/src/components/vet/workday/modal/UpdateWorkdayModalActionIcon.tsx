@@ -6,6 +6,7 @@ import {WorkdayUpdateRequest} from "@/components/vet/workday/objects";
 import React, {useState} from "react";
 import {IconPencil} from "@tabler/icons-react";
 import {DatePickerInput} from "@mantine/dates";
+import {showModal} from "@/App";
 
 export default UpdateWorkdayModalActionIcon;
 
@@ -29,9 +30,7 @@ function UpdateWorkdayModalActionIcon({workdayId = -1, vetId = -1}) {
       .then(() => {
         console.log("customer updated successfully");
       })
-      .catch((error) => {
-        console.error("Error updating customer", error);
-      })
+      .catch((error) => showModal('Error', error.response.data.message));
   }
 
   return (

@@ -5,13 +5,14 @@ import {PetResponse} from "@/components/vaccination/objects";
 import {deleteById, findAll, search} from "@/components/vaccination/VaccinationService";
 import {useNavigate} from "react-router-dom";
 import UpdateVaccinationModalActionIcon from "@/components/vaccination/modal/UpdateVaccinationModalActionIcon";
+import {showModal} from "@/App";
 
 export function VaccinationsTable({vaccinations = [new PetResponse()]}) {
   const navigate = useNavigate();
   const deleteRecord = (id: number) => {
     deleteById(id)
       .then(() => console.log('Vaccination deleted successfully'))
-      .catch((error) => console.error('Error deleting  Vaccination', error));
+      .catch((error) => showModal('Error', error.response.data.message));
   }
   const tableFormer = (item: PetResponse) => (
     <Table.Tr key={item.id}>

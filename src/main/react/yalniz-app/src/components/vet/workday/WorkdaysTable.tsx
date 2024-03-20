@@ -8,13 +8,14 @@ import {deleteById} from "@/components/vet/workday/WorkdayService";
 import UpdateWorkdayModalActionIcon from "@/components/vet/workday/modal/UpdateWorkdayModalActionIcon";
 import {useNavigate} from "react-router-dom";
 import {WorkdayResponse} from "@/components/vet/workday/objects";
+import {showModal} from "@/App";
 
 export function WorkdaysTable({workdays = [new WorkdayResponse()]}) {
   const navigate = useNavigate();
   const deleteRecord = (id: number) => {
     deleteById(id)
       .then(() => console.log('Workday deleted successfully'))
-      .catch((error) => console.error('Error deleting  Workday', error));
+      .catch((error) => showModal('Error', error.response.data.message));
   }
   const tableFormer = (item: WorkdayResponse) => (
     <Table.Tr key={item.id}>

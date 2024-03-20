@@ -3,6 +3,7 @@ import {findById} from "@/components/customer/CustomerService";
 import {CustomerResponse} from "@/components/customer/objects";
 import {useEffect, useState} from "react";
 import PetsTable from "@/components/pet/PetsTable";
+import {showModal} from "@/App";
 
 function CustomerPage() {
   const { id } = useParams();
@@ -15,7 +16,7 @@ function CustomerPage() {
     findById(+id)
       // @ts-ignore
       .then((result) => setCustomer(result.data.data))
-      .catch(error => console.error('Error fetching customer', error, '\n\tid:', id));
+      .catch(error => showModal("Error fetching customer", `Could not fetch customer with id ${id}`));
   }, [id]);
 
   console.log('customer', customer);

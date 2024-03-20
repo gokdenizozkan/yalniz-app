@@ -4,6 +4,7 @@ import {useForm} from "@mantine/form";
 import axios from "axios";
 import {findAll, save} from "@/components/customer/CustomerService";
 import {CustomerSaveRequest} from "@/components/customer/objects";
+import {showModal} from "@/App";
 
 function SaveCustomerModalButton() {
   const [opened, { open, close }] = useDisclosure(false);
@@ -15,16 +16,9 @@ function SaveCustomerModalButton() {
   );
 
   const onSubmit = () => {
-    console.log(customerForm.values);
-
-    console.log('save');
     save(customerForm.values)
-      .then(() => {
-        console.log("customer saved successfully");
-      })
-      .catch((error) => {
-        console.error("Error saving customer", error);
-      })
+      .then(() => console.log("customer saved successfully"))
+      .catch((error) => showModal("Error", error.message))
       .finally(() => console.log("FINITO"));
   }
 

@@ -12,14 +12,6 @@ export async function findById(id: number) {
   return await axios.get(`${API_URL}/${id}`)
 }
 
-export async function search(name: string) {
-  return await axios.get(`${API_URL}/search?name=${name}`)
-}
-
-export async function findPetsById(id: number) {
-  return await axios.get(`${API_URL}/${id}/pets`)
-}
-
 export async function save(values: ReportSaveRequest) {
   return await axios.post(API_URL, values)
 }

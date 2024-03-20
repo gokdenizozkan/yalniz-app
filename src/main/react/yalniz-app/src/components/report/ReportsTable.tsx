@@ -8,13 +8,14 @@ import {deleteById, findAll} from "@/components/report/ReportService";
 import {useNavigate} from "react-router-dom";
 import UpdateReportModalActionIcon from "@/components/report/modal/UpdateReportModalActionIcon";
 import SaveVaccinationModalButton from "@/components/vaccination/modal/SaveVaccinationModalButton";
+import {showModal} from "@/App";
 
 export function ReportsTable() {
   const navigate = useNavigate();
   const deleteRecord = (id:number) => {
     deleteById(id)
       .then(() => console.log('Report deleted successfully'))
-      .catch((error) => console.error('Error deleting Report with id', id, error));
+      .catch((error) => showModal("Error", error.message));
   }
   const tableFormer = (item:ReportResponse) => (
     <Table.Tr key={item.id}>
@@ -71,5 +72,5 @@ export function ReportsTable() {
 function loadAllData(setData:any) {
   findAll()
     .then(response => setData(response.data.data))
-    .catch(error => console.error('Error loading Vets', error));
+    .catch(error => showModal("Error", error.message));
 }

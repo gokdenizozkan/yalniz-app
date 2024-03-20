@@ -4,6 +4,7 @@ import {ReportResponse} from "@/components/report/objects";
 import {useEffect, useState} from "react";
 import {WorkdaysTable} from "@/components/vet/workday/WorkdaysTable";
 import {VaccinationsTable} from "@/components/vaccination/VaccinationsTable";
+import {showModal} from "@/App";
 
 function VetPage() {
   const {id} = useParams();
@@ -17,7 +18,7 @@ function VetPage() {
     findById(+id)
       // @ts-ignore
       .then((result) => setReport(result.data.data))
-      .catch(error => console.error('Error fetching report', error, '\n\tid:', id));
+      .catch(error => showModal('Error', error.response.data.message));
   }, [id]);
 
   console.log('report', report);

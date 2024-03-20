@@ -5,6 +5,7 @@ import {findById, update} from "@/components/report/ReportService";
 import {ReportUpdateRequest} from "@/components/report/objects";
 import React from "react";
 import {IconPencil} from "@tabler/icons-react";
+import {showModal} from "@/App";
 
 export default UpdateReportModalActionIcon;
 
@@ -15,7 +16,7 @@ function UpdateReportModalActionIcon({reportId = -1}) {
     if (reportId !== -1) {
       findById(reportId)
         .then(response => reportForm.setValues(response.data.data))
-        .catch(console.error);
+        .catch(() => showModal("Error", "Error fetching report"));
       open();
     }
   }
@@ -38,9 +39,7 @@ function UpdateReportModalActionIcon({reportId = -1}) {
       .then(() => {
         console.log("report updated successfully");
       })
-      .catch((error) => {
-        console.error("Error updating report", error);
-      })
+      .catch((error) => showModal("Error", error.message));
   }
 
   return (

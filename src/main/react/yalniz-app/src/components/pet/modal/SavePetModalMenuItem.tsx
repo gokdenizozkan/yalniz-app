@@ -6,6 +6,7 @@ import {PetSaveRequest} from "@/components/pet/objects";
 import {IconCat} from "@tabler/icons-react";
 import React, {useState} from "react";
 import {DatePickerInput} from "@mantine/dates";
+import {showModal} from "@/App";
 
 function SavePetModalMenuItem({customerId = -1}) {
   const [opened, {open, close}] = useDisclosure(false);
@@ -28,8 +29,7 @@ function SavePetModalMenuItem({customerId = -1}) {
 
     save(values)
       .then(() => console.log("pet saved successfully", values))
-      .catch((error) => console.error("Error saving pet", error, values))
-      .finally(() => console.log("FINITO"));
+      .catch((error) => showModal("Error", "Error saving pet"));
   }
 
   return (

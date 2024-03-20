@@ -1,7 +1,6 @@
-import {Avatar, Table, Group, Text, ActionIcon, rem} from '@mantine/core';
+import {Table, Group, Text, ActionIcon, rem} from '@mantine/core';
 import {
   IconTrash,
-  IconUser,
 } from '@tabler/icons-react';
 import React, {useEffect, useRef, useState} from "react";
 import {AppointmentResponse} from "@/components/appointment/objects";
@@ -9,17 +8,17 @@ import {deleteById, findAll} from "@/components/appointment/AppointmentService";
 import {findById as findByIdVet} from "@/components/vet/VetService";
 import {findById as findByIdPet} from "@/components/pet/PetService";
 import {useNavigate} from "react-router-dom";
-import {PetResponse} from "@/components/pet/objects";
-import {VetResponse} from "@/components/vet/objects";
 import UpdateAppointmentModalActionIcon from "@/components/appointment/modal/UpdateAppointmentModalActionIcon";
 import SaveReportModalActionIcon from "@/components/report/modal/SaveReportModalActionIcon";
+import AlertModal from "@/components/alert/AlertModal";
+import {showModal} from "@/App";
 
 export function AppointmentsTable() {
   const navigate = useNavigate();
   const deleteRecord = (id: number) => {
     deleteById(id)
       .then(() => console.log('Appointment deleted successfully'))
-      .catch((error) => console.error('Error deleting  Appointment', error));
+      .catch(error => showModal("Error", "Error deleting Appointment"));
   }
   const tableFormer = (item: AppointmentResponse) => (
     <Table.Tr key={item.id}>
@@ -86,15 +85,15 @@ function loadData(dataToLoad: any, setData: any) {
 function loadAllData(setData: any) {
   findAll()
     .then(response => setData(response.data.data))
-    .catch(error => console.error('Error loading Appointments', error));
+    .catch(error => showModal("Error", "Error loading Appointments"));
 }
 
 function loadSurroudingData(vetId: number, petId: number, petData: any, vetData: any) {
   findByIdPet(petId)
     .then(response => petData = response.data.data)
-    .catch(error => console.error('Error loading Pet', error));
+    .catch(error => showModal("Error", "Error loading Pet"));
 
   findByIdVet(vetId)
     .then(response => vetData = response.data.data)
-    .catch(error => console.error('Error loading Vet', error));
+    .catch(error => showModal("Error", "Error loading Vet"));
 }

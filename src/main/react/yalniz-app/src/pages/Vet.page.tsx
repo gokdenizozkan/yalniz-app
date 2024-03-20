@@ -3,6 +3,7 @@ import {findByIdWithWorkdays} from "@/components/vet/VetService";
 import {VetResponseWithWorkdays} from "@/components/vet/objects";
 import {useEffect, useState} from "react";
 import {WorkdaysTable} from "@/components/vet/workday/WorkdaysTable";
+import {showModal} from "@/App";
 
 function VetPage() {
   const {id} = useParams();
@@ -16,7 +17,7 @@ function VetPage() {
     findByIdWithWorkdays(+id)
       // @ts-ignore
       .then((result) => setVet(result.data.data))
-      .catch(error => console.error('Error fetching vet', error, '\n\tid:', id));
+      .catch(error => showModal('Error', error.response.data.message));
 
 
   }, [id]);

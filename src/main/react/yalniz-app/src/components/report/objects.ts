@@ -1,4 +1,4 @@
-import {VaccinationResponse} from "@/components/vaccination/objects";
+import {PetResponse} from "@/components/vaccination/objects";
 
 export class ReportResponse {
   id: number = 0;
@@ -7,7 +7,7 @@ export class ReportResponse {
   cost: number = 10.0;
   appointmentId: number = 0;
   appointmentDateTime: string = "YYYY-MM-DDTHH:MM:SS";
-  vaccinations: VaccinationResponse[] = [];
+  vaccinations: PetResponse[] = [];
 }
 
 export class ReportSaveRequest {

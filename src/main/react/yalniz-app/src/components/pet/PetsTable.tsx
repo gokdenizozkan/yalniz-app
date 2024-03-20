@@ -1,12 +1,12 @@
 import {Table, Group, Text, ActionIcon, rem} from '@mantine/core';
 import {IconTrash} from '@tabler/icons-react';
 import React from "react";
-import {PetResponse} from "@/components/vaccination/objects";
-import {deleteById, findAll, search} from "@/components/vaccination/VaccinationService";
+import {PetResponse} from "@/components/pet/objects";
+import {deleteById} from "@/components/pet/PetService";
 import {useNavigate} from "react-router-dom";
-import UpdateVaccinationModalActionIcon from "@/components/vaccination/modal/UpdateVaccinationModalActionIcon";
+import UpdatePetModalActionIcon from "@/components/pet/modal/UpdatePetModalActionIcon";
 
-export function VaccinationsTable({vaccinations = [new PetResponse()]}) {
+export default function PetsTable({pets = [new PetResponse()]}) {
   const navigate = useNavigate();
   const deleteRecord = (id: number) => {
     deleteById(id)
@@ -18,30 +18,35 @@ export function VaccinationsTable({vaccinations = [new PetResponse()]}) {
       <Table.Td>
         <Group gap="sm">
           <div>
-            <Text onClick={() => navigate(`/vaccinations/${item.id}`)} fz="sm" fw={500}>{item.name}</Text>
+            <Text onClick={() => navigate(`/pets/${item.id}`)} fz="sm" fw={500}>{item.name}</Text>
             <Text c="dimmed" fz="xs">{item.name}</Text>
           </div>
         </Group>
       </Table.Td>
 
       <Table.Td>
-        <Text fz="sm">{item.code}</Text>
-        <Text fz="xs" c="dimmed">Code</Text>
+        <Text fz="sm">{item.species}</Text>
+        <Text fz="xs" c="dimmed">Species</Text>
       </Table.Td>
 
       <Table.Td>
-        <Text fz="sm">{item.administrationDate}</Text>
-        <Text fz="xs" c="dimmed">Administration Date</Text>
+        <Text fz="sm">{item.breed}</Text>
+        <Text fz="xs" c="dimmed">Breed</Text>
       </Table.Td>
 
       <Table.Td>
-        <Text fz="sm">{item.expirationDate}</Text>
-        <Text fz="xs" c="dimmed">Expiration Date</Text>
+        <Text fz="sm">{item.color}</Text>
+        <Text fz="xs" c="dimmed">Color</Text>
+      </Table.Td>
+
+      <Table.Td>
+        <Text fz="sm">{item.gender}</Text>
+        <Text fz="xs" c="dimmed">Gender</Text>
       </Table.Td>
 
       <Table.Td>
         <Group gap={0} justify="flex-end">
-          <UpdateVaccinationModalActionIcon vaccination={item}/>
+          <UpdatePetModalActionIcon pet={item}/>
 
           <ActionIcon onClick={() => deleteRecord(+item.id)} variant="subtle" color="red">
             <IconTrash style={{width: rem(22), height: rem(22)}} stroke={1.5}/>
@@ -52,7 +57,7 @@ export function VaccinationsTable({vaccinations = [new PetResponse()]}) {
     </Table.Tr>
   );
 
-  const rows = vaccinations.map(item => tableFormer(item));
+  const rows = pets.map(item => tableFormer(item));
 
   return (
     <>

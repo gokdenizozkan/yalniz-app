@@ -2,6 +2,7 @@ import {useParams} from "react-router-dom";
 import {findById} from "@/components/customer/CustomerService";
 import {CustomerResponse} from "@/components/customer/objects";
 import {useEffect, useState} from "react";
+import PetsTable from "@/components/pet/PetsTable";
 
 function CustomerPage() {
   const { id } = useParams();
@@ -29,11 +30,7 @@ function CustomerPage() {
       <p>{customer.address}</p>
       <p>{customer.city}</p>
       <p>{customer.phone}</p>
-      <p>PETS</p>
-      {customer.pets.map(pet => (
-        <div key={pet.id}>
-          <p>{pet.name}</p>
-        </div>))}
+      <PetsTable pets={customer.pets}/>
     </div>
   );
 }

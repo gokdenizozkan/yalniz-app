@@ -4,12 +4,12 @@ import {useForm} from "@mantine/form";
 import {update} from "@/components/vaccination/VaccinationService";
 import React, {useState} from "react";
 import {IconPencil} from "@tabler/icons-react";
-import {VaccinationResponse, VaccinationUpdateRequest} from "@/components/vaccination/objects";
+import {PetResponse, VaccinationUpdateRequest} from "@/components/vaccination/objects";
 import {DatePickerInput} from "@mantine/dates";
 
 export default UpdateVaccinationModalActionIcon;
 
-function UpdateVaccinationModalActionIcon({vaccination= new VaccinationResponse()}) {
+function UpdateVaccinationModalActionIcon({vaccination= new PetResponse()}) {
   const [opened, {open, close}] = useDisclosure(false);
   const [administrationDate, setAdministrationDate] = useState<Date | null>(null);
   const [expirationDate, setExpirationDate] = useState<Date | null>(null);

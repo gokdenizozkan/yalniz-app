@@ -41,14 +41,14 @@ public class Pet {
     @Temporal(TemporalType.DATE)
     private LocalDate birthdate;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "owner_id", referencedColumnName = "id")
     @JsonIgnore
     private Owner owner;
 
-    @OneToMany(mappedBy = "pet", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "pet", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Vaccination> vaccinations;
 
-    @OneToMany(mappedBy = "pet", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "pet", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Appointment> appointments;
 }

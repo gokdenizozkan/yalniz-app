@@ -2,32 +2,29 @@ import { useDisclosure } from '@mantine/hooks';
 import {Modal, Button, Box, TextInput,Group, ActionIcon, rem} from '@mantine/core';
 import {useForm} from "@mantine/form";
 import {findById, update} from "@/components/pet/PetService";
-import {PetUpdateRequest} from "@/components/pet/objects";
+import {PetResponse, PetUpdateRequest} from "@/components/pet/objects";
 import React, {useState} from "react";
 import {IconPencil} from "@tabler/icons-react";
 import {DatePickerInput} from "@mantine/dates";
 
-function UpdatePetModalActionIcon({petId = -1}) {
+function UpdatePetModalActionIcon({pet = new PetResponse()}) {
   const [opened, {open, close}] = useDisclosure(false);
   const [birthdate, setBirthdate] = useState<Date | null>(null);
-  const [ownerId, setOwnerId] = useState(-1);
 
-  const readyForm = () => {
-    if (petId !== -1) {
-      findById(petId)
-        .then(response => {
-          petForm.setValues(response.data)
-          setBirthdate(new Date(response.data.birthdate));
-          setOwnerId(response.data.ownerId)
-        })
-        .catch(console.error);
-      open();
-    }
-  }
+  const request = new PetUpdateRequest();
+  request.id = pet.id;
+  request.name = pet.name;
+  request.species = pet.species;
+  request.breed = pet.breed;
+  request.gender = pet.gender;
+  request.color = pet.color;
+  request.birthdate = pet.birthdate;
+  request.ownerId = pet.ownerId;
+
 
   const petForm = useForm(
     {
-      initialValues: new PetUpdateRequest(),
+      initialValues: request,
     }
   );
 
@@ -36,14 +33,14 @@ function UpdatePetModalActionIcon({petId = -1}) {
     if (!birthdateLocalDate) return;
 
     values.birthdate = birthdateLocalDate;
-    update(petId, values)
-      .then(() => console.log("customer updated successfully"))
-      .catch((error) => console.error("Error updating customer", error))
+    update(pet.id, values)
+      .then(() => console.log("pet updated successfully"))
+      .catch((error) => console.error("Error updating pet", error))
   }
 
   return (
     <>
-      <Modal opened={opened} onClose={close} title="Update Customer" centered>
+      <Modal opened={opened} onClose={close} title="Update Pet" centered>
         <Box maw={340} mx="auto">
           <form onSubmit={petForm.onSubmit((values) => onSubmit(values))}>
             <TextInput withAsterisk label="Name" placeholder="Rifki" {...petForm.getInputProps('name')} />
@@ -61,7 +58,7 @@ function UpdatePetModalActionIcon({petId = -1}) {
         </Box>
       </Modal>
 
-      <ActionIcon onClick={readyForm} variant="subtle" color="gray">
+      <ActionIcon onClick={open} variant="subtle" color="gray">
         <IconPencil style={{width: rem(22), height: rem(22)}} stroke={1.5}/>
       </ActionIcon>
     </>

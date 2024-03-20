@@ -1,4 +1,4 @@
-export class VaccinationResponse {
+export class PetResponse {
   id: number = 0;
   name: string = "";
   code: string = "";

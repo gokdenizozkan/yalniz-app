@@ -15,7 +15,10 @@ export function VetsTable() {
   const navigate = useNavigate();
   const deleteRecord = (id:number) => {
     deleteById(id)
-      .then(() => console.log('Vet deleted successfully'))
+      .then(() => {
+        console.log('Vet deleted successfully');
+        window.location.reload();
+      })
       .catch((error) => showModal('Error deleting Vet', error));
   }
 

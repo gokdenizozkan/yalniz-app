@@ -11,7 +11,10 @@ export function VaccinationsTable({vaccinations = [new PetResponse()]}) {
   const navigate = useNavigate();
   const deleteRecord = (id: number) => {
     deleteById(id)
-      .then(() => console.log('Vaccination deleted successfully'))
+      .then(() => {
+        console.log('Vaccination deleted successfully');
+        window.location.reload();
+      })
       .catch((error) => showModal('Error', error.response.data.message));
   }
   const tableFormer = (item: PetResponse) => (

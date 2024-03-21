@@ -14,7 +14,10 @@ export function ReportsTable() {
   const navigate = useNavigate();
   const deleteRecord = (id:number) => {
     deleteById(id)
-      .then(() => console.log('Report deleted successfully'))
+      .then(() => {
+        console.log('Report deleted successfully');
+        window.location.reload();
+      })
       .catch((error) => showModal("Error", error.message));
   }
   const tableFormer = (item:ReportResponse) => (

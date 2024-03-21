@@ -23,7 +23,10 @@ export function CustomersTable() {
   };
   const deleteRecord = (id:number) => {
     deleteById(id)
-      .then(() => console.log('Customer deleted successfully'))
+      .then(() => {
+        console.log('Customer deleted successfully')
+        loadAllData(setData);
+      })
       .catch((error) => showModal("Error", "Error deleting customer"));
   }
   const tableFormer = (item:CustomerResponse) => (

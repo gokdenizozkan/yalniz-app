@@ -10,14 +10,16 @@ import {findById as findByIdPet} from "@/components/pet/PetService";
 import {useNavigate} from "react-router-dom";
 import UpdateAppointmentModalActionIcon from "@/components/appointment/modal/UpdateAppointmentModalActionIcon";
 import SaveReportModalActionIcon from "@/components/report/modal/SaveReportModalActionIcon";
-import AlertModal from "@/components/alert/AlertModal";
 import {showModal} from "@/App";
 
 export function AppointmentsTable() {
   const navigate = useNavigate();
   const deleteRecord = (id: number) => {
     deleteById(id)
-      .then(() => console.log('Appointment deleted successfully'))
+      .then(() => {
+        console.log('Appointment deleted successfully')
+        loadAllData(setData);
+      })
       .catch(error => showModal("Error", "Error deleting Appointment"));
   }
   const tableFormer = (item: AppointmentResponse) => (

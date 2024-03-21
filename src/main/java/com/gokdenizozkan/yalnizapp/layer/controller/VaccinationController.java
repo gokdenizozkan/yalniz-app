@@ -22,7 +22,7 @@ import java.time.LocalDate;
 @RestController
 @RequestMapping("/api/v2/vaccinations")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin
 public class VaccinationController {
     private final VaccinationResponser responser;
 

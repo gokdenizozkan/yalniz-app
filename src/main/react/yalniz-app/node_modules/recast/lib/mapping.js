@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = require("tslib");
-var assert_1 = tslib_1.__importDefault(require("assert"));
+var tiny_invariant_1 = tslib_1.__importDefault(require("tiny-invariant"));
 var util_1 = require("./util");
 var Mapping = /** @class */ (function () {
     function Mapping(sourceLines, sourceLoc, targetLoc) {
@@ -23,7 +23,7 @@ var Mapping = /** @class */ (function () {
                 targetToPos = end;
             }
             else {
-                assert_1.default.strictEqual(name, "start");
+                (0, tiny_invariant_1.default)(name === "start");
             }
             return skipChars(sourceLines, sourceFromPos, lines, targetFromPos, targetToPos);
         }
@@ -161,12 +161,12 @@ function skipChars(sourceLines, sourceFromPos, targetLines, targetFromPos, targe
             targetCursor.column = 0;
         }
         else {
-            assert_1.default.strictEqual(lineDiff, 0);
+            (0, tiny_invariant_1.default)(lineDiff === 0);
         }
         while ((0, util_1.comparePos)(targetCursor, targetToPos) < 0 &&
             targetLines.nextPos(targetCursor, true)) {
-            assert_1.default.ok(sourceLines.nextPos(sourceCursor, true));
-            assert_1.default.strictEqual(sourceLines.charAt(sourceCursor), targetLines.charAt(targetCursor));
+            (0, tiny_invariant_1.default)(sourceLines.nextPos(sourceCursor, true));
+            (0, tiny_invariant_1.default)(sourceLines.charAt(sourceCursor) === targetLines.charAt(targetCursor));
         }
     }
     else {
@@ -185,12 +185,12 @@ function skipChars(sourceLines, sourceFromPos, targetLines, targetFromPos, targe
             targetCursor.column = targetLines.getLineLength(targetCursor.line);
         }
         else {
-            assert_1.default.strictEqual(lineDiff, 0);
+            (0, tiny_invariant_1.default)(lineDiff === 0);
         }
         while ((0, util_1.comparePos)(targetToPos, targetCursor) < 0 &&
             targetLines.prevPos(targetCursor, true)) {
-            assert_1.default.ok(sourceLines.prevPos(sourceCursor, true));
-            assert_1.default.strictEqual(sourceLines.charAt(sourceCursor), targetLines.charAt(targetCursor));
+            (0, tiny_invariant_1.default)(sourceLines.prevPos(sourceCursor, true));
+            (0, tiny_invariant_1.default)(sourceLines.charAt(sourceCursor) === targetLines.charAt(targetCursor));
         }
     }
     return sourceCursor;

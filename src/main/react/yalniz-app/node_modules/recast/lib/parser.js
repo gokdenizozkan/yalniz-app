@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.parse = void 0;
 var tslib_1 = require("tslib");
-var assert_1 = tslib_1.__importDefault(require("assert"));
+var tiny_invariant_1 = tslib_1.__importDefault(require("tiny-invariant"));
 var types = tslib_1.__importStar(require("ast-types"));
 var b = types.builders;
 var isObject = types.builtInTypes.object;
@@ -111,7 +111,7 @@ function parse(source, options) {
 }
 exports.parse = parse;
 var TreeCopier = function TreeCopier(lines, tokens) {
-    assert_1.default.ok(this instanceof TreeCopier);
+    (0, tiny_invariant_1.default)(this instanceof TreeCopier);
     this.lines = lines;
     this.tokens = tokens;
     this.startTokenIndex = 0;

@@ -53,10 +53,7 @@ public class AppointmentService {
         return repository.save(appointment);
     }
 
-    public Data update(Long id, AppointmentUpdateRequest request) {
-        Appointment foundAppointment = repository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Appointment not found with id " + id));
-
+    public Appointment update(Long id, AppointmentUpdateRequest request) {
         boolean vetNotWorking = !workdayRepository.existsByVetIdAndDate(request.vetId(), request.start().toLocalDate());
         if (vetNotWorking) throw new IllegalArgumentException("Vet is not working on " + request.start().toLocalDate());
 
@@ -64,9 +61,7 @@ public class AppointmentService {
         if (vetNotAvailable) throw new IllegalArgumentException("Vet is not available between " + request.start() + " and " + request.start().plusHours(1));
 
         Appointment updatedAppointment = entityMappers.fromUpdateRequest.apply(request);
-        repository.save(updatedAppointment);
-
-        return Data.of(Pair.of("old", foundAppointment), Pair.of("new", updatedAppointment));
+        return repository.save(updatedAppointment);
     }
 
     public void deleteById(Long id) {

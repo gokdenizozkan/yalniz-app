@@ -38,6 +38,6 @@ public class Owner {
     @NotNull
     private String city;
 
-    @OneToMany(mappedBy = "owner", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Pet> pets;
 }

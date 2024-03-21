@@ -47,13 +47,9 @@ public class VaccinationService {
         return repository.save(vaccination);
     }
 
-    public Data update(Long id, VaccinationUpdateRequest request) {
-        Vaccination foundVaccination = repository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Vaccination not found with id " + id));
-
+    public Vaccination update(Long id, VaccinationUpdateRequest request) {
         Vaccination savedVaccination = entityMappers.fromUpdateRequest.apply(request);
-        repository.save(savedVaccination);
-        return Data.of(Pair.of("old", foundVaccination), Pair.of("new", savedVaccination));
+        return repository.save(savedVaccination);
     }
 
     public void deleteById(Long id) {

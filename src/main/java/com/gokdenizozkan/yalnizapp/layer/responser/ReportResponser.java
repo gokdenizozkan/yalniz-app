@@ -41,9 +41,9 @@ public class ReportResponser {
     }
 
     public ResponseEntity<StructuredResponse> update(Long id, ReportUpdateRequest request) {
-        Data data = service.update(id, request);
-        data.map(dtoMappers.toResponse);
-        return StructuredResponseEntityBuilder.success(data);
+        Report updatedReport = service.update(id, request);
+        ReportResponse response = dtoMappers.toResponse.apply(updatedReport);
+        return StructuredResponseEntityBuilder.success(response);
     }
 
     public ResponseEntity<StructuredResponse> saveVaccination(Long id, ReportVaccinationAddRequest request) {

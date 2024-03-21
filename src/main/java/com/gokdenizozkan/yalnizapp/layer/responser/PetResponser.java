@@ -46,9 +46,9 @@ public class PetResponser {
     }
 
     public ResponseEntity<StructuredResponse> update(Long id, PetUpdateRequest request) {
-        Data data = service.update(id, request);
-        data.map(dtoMappers.toResponse);
-        return StructuredResponseEntityBuilder.success(data.get());
+        Pet pet = service.update(id, request);
+        PetResponse response = dtoMappers.toResponse.apply(pet);
+        return StructuredResponseEntityBuilder.success(response);
     }
 
     public ResponseEntity<StructuredResponse> deleteById(Long id) {

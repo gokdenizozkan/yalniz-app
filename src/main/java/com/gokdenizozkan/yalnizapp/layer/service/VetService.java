@@ -33,14 +33,9 @@ public class VetService {
         return repository.save(vet);
     }
 
-    public Data update(Long id, VetUpdateRequest request) {
-        Vet foundVet = repository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Vet not found with id " + id));
-
-        Vet updatedVet = entityMappers.fromUpdateRequest.apply(request);
-        repository.save(updatedVet);
-
-        return Data.of(Pair.of("old", foundVet), Pair.of("new", updatedVet));
+    public Vet update(Long id, VetUpdateRequest request) {
+        Vet vet = entityMappers.fromUpdateRequest.apply(request);
+        return repository.save(vet);
     }
 
     public void deleteById(Long id) {

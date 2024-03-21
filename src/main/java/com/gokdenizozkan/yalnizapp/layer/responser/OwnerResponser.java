@@ -58,10 +58,9 @@ public class OwnerResponser {
 
 
     public ResponseEntity<StructuredResponse> update(Long id, OwnerUpdateRequest request) {
-        Data data = service.update(id, request);
-        data.map(dtoMappers.toResponse);
-
-        return StructuredResponseEntityBuilder.success(data.get());
+        Owner owner = service.update(id, request);
+        OwnerResponse response = dtoMappers.toResponse.apply(owner);
+        return StructuredResponseEntityBuilder.success(response);
     }
 
     public ResponseEntity<StructuredResponse> deleteById(Long id) {

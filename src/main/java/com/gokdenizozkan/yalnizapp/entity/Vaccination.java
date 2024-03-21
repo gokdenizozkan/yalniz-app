@@ -38,7 +38,7 @@ public class Vaccination {
     @Temporal(TemporalType.DATE)
     private LocalDate expirationDate;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "pet_id", referencedColumnName = "id")
     private Pet pet;
 

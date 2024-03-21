@@ -33,14 +33,9 @@ public class WorkdayService {
         return repository.save(workday);
     }
 
-    public Data update(Long id, WorkdayUpdateRequest request) {
-        Workday foundWorkday = repository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Workday not found with id: " + id));
-
+    public Workday update(Long id, WorkdayUpdateRequest request) {
         Workday updatedWorkday = entityMappers.fromUpdateRequest.apply(request);
-        repository.save(updatedWorkday);
-
-        return Data.of(Pair.of("old", foundWorkday), Pair.of("new", updatedWorkday));
+        return repository.save(updatedWorkday);
     }
 
     public void deleteById(Long id) {

@@ -33,8 +33,18 @@ function UpdatePetModalActionIcon({pet = new PetResponse()}) {
     const birthdateLocalDate = birthdate?.toISOString().split('T')[0];
     if (!birthdateLocalDate) return;
 
-    values.birthdate = birthdateLocalDate;
-    update(pet.id, values)
+    const request = new PetUpdateRequest();
+    request.id = pet.id;
+    request.name = values.name;
+    request.species = values.species;
+    request.breed = values.breed;
+    request.color = values.color;
+    request.gender = values.gender;
+    request.birthdate = birthdateLocalDate;
+    request.ownerId = pet.ownerId;
+
+    console.log(request);
+    update(pet.id, request)
       .then(() => {
         console.log("pet updated successfully");
         window.location.reload();

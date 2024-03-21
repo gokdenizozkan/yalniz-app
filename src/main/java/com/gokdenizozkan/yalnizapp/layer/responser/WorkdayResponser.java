@@ -40,9 +40,9 @@ public class WorkdayResponser {
     }
 
     public ResponseEntity<StructuredResponse> update(Long id, WorkdayUpdateRequest request) {
-        Data data = service.update(id, request);
-        data.map(dtoMappers.toResponse);
-        return StructuredResponseEntityBuilder.success(data.get());
+        Workday updatedWorkday = service.update(id, request);
+        WorkdayResponse response = dtoMappers.toResponse.apply(updatedWorkday);
+        return StructuredResponseEntityBuilder.success(response);
     }
 
     public ResponseEntity<StructuredResponse> deleteById(Long id) {

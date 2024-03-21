@@ -45,15 +45,9 @@ public class OwnerService {
         return repository.save(owner);
     }
 
-    public Data update(Long id, OwnerUpdateRequest request) {
-        Owner foundOwner = repository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Owner not found with id " + id));
-
-        Owner savedOwner = entityMappers.fromUpdateRequest.apply(request);
-        savedOwner.setId(foundOwner.getId());
-        repository.save(savedOwner);
-
-        return Data.of(Pair.of("old", foundOwner), Pair.of("new", savedOwner));
+    public Owner update(Long id, OwnerUpdateRequest request) {
+        Owner owner = entityMappers.fromUpdateRequest.apply(request);
+        return repository.save(owner);
     }
 
     public void deleteById(Long id) {

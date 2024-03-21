@@ -41,9 +41,9 @@ public class VetResponser {
     }
 
     public ResponseEntity<StructuredResponse> update(Long id, VetUpdateRequest request) {
-        Data data = service.update(id, request);
-        data.map(dtoMappers.toResponse);
-        return StructuredResponseEntityBuilder.success(data.get());
+        Vet vet = service.update(id, request);
+        VetResponse response = dtoMappers.toResponse.apply(vet);
+        return StructuredResponseEntityBuilder.success(response);
     }
 
     public ResponseEntity<StructuredResponse> deleteById(Long id) {

@@ -37,14 +37,9 @@ public class PetService {
         return repository.save(pet);
     }
 
-    public Data update(Long id, PetUpdateRequest request) {
-        Pet foundPet = repository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Pet not found with id " + id));
-
+    public Pet update(Long id, PetUpdateRequest request) {
         Pet pet = entityMappers.fromUpdateRequest.apply(request);
-        Pet updatedPet = repository.save(pet);
-
-        return Data.of(Pair.of("old", foundPet), Pair.of("new", updatedPet));
+        return repository.save(pet);
     }
 
     public void deleteById(Long id) {

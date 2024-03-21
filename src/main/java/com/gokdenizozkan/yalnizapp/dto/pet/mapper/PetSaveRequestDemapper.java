@@ -7,6 +7,7 @@ import com.gokdenizozkan.yalnizapp.layer.repository.OwnerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.function.Function;
 
 @Component
@@ -26,6 +27,8 @@ public class PetSaveRequestDemapper implements Function<PetSaveRequest, Pet> {
         pet.setBirthdate(request.birthdate());
         pet.setOwner(ownerRepository.findById(request.ownerId())
                 .orElseThrow(() -> new ResourceNotFoundException("Owner not found with id " + request.ownerId())));
+        pet.setAppointments(new ArrayList<>());
+        pet.setVaccinations(new ArrayList<>());
 
         return pet;
     }

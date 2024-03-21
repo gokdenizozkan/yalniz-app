@@ -53,9 +53,9 @@ public class VaccinationResponser {
     }
 
     public ResponseEntity<StructuredResponse> update(Long id, VaccinationUpdateRequest request) {
-        Data data = service.update(id, request);
-        data.map(dtoMappers.toResponse);
-        return StructuredResponseEntityBuilder.success(data.get());
+        Vaccination vaccination = service.update(id, request);
+        VaccinationResponse response = dtoMappers.toResponse.apply(vaccination);
+        return StructuredResponseEntityBuilder.success(response);
     }
 
     public ResponseEntity<StructuredResponse> deleteById(Long id) {

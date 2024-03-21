@@ -5,6 +5,7 @@ import {save as saveReport} from "@/components/report/ReportService";
 import {ReportSaveRequest} from "@/components/report/objects";
 import {IconReport} from "@tabler/icons-react";
 import React, {useState} from "react";
+import {showModal} from "@/App";
 
 function SaveReportModalActionIcon({appointmentId = -1}) {
   const [opened, { open, close }] = useDisclosure(false);
@@ -26,13 +27,11 @@ function SaveReportModalActionIcon({appointmentId = -1}) {
     saveReport(requestReport)
       .then(() => {
         console.log("Report saved successfully");
+        window.location.reload();
       })
       .catch((error: any) => {
-        console.error("Error saving report", error);
-      })
-      .finally(() => console.log("FINITO"));
-
-
+        showModal("Error", error.message);
+      });
   }
 
   return (

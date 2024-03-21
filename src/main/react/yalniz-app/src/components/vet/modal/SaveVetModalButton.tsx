@@ -16,7 +16,10 @@ function SaveVetModalButton() {
 
   const onSubmit = (values: VetSaveRequest) => {
     save(values)
-      .then(() => console.log("Vet saved successfully"))
+      .then(() => {
+        console.log("Vet saved successfully")
+        window.location.reload();
+      })
       .catch((error: any) => showModal("Error", error.message));
   }
 
@@ -30,12 +33,6 @@ function SaveVetModalButton() {
             <TextInput withAsterisk label="Email" placeholder="your@email.com" {...vetForm.getInputProps('email')} />
             <TextInput withAsterisk label="City" placeholder="Ankara" {...vetForm.getInputProps('city')} />
             <Textarea withAsterisk label="Address" placeholder="James Sunderland Street, Hilly Hill/Silent Hill" {...vetForm.getInputProps('address')} />
-
-            <Checkbox
-              mt="md"
-              label="I agree to sell my privacy"
-              {...vetForm.getInputProps('termsOfService', { type: 'checkbox' })}
-            />
 
             <Group justify="flex-end" mt="md">
               <Button type="submit">Submit</Button>

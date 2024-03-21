@@ -17,9 +17,11 @@ function SaveCustomerModalButton() {
 
   const onSubmit = () => {
     save(customerForm.values)
-      .then(() => console.log("customer saved successfully"))
+      .then(() => {
+        console.log("customer saved successfully");
+        window.location.reload();
+      })
       .catch((error) => showModal("Error", error.message))
-      .finally(() => console.log("FINITO"));
   }
 
   return (
@@ -32,12 +34,6 @@ function SaveCustomerModalButton() {
             <TextInput withAsterisk label="Email" placeholder="your@email.com" {...customerForm.getInputProps('email')} />
             <TextInput withAsterisk label="City" placeholder="Ankara" {...customerForm.getInputProps('city')} />
             <Textarea withAsterisk label="Address" placeholder="James Sunderland Street, Hilly Hill/Silent Hill" {...customerForm.getInputProps('address')} />
-
-            <Checkbox
-              mt="md"
-              label="I agree to sell my privacy"
-              {...customerForm.getInputProps('termsOfService', { type: 'checkbox' })}
-            />
 
             <Group justify="flex-end" mt="md">
               <Button type="submit">Submit</Button>

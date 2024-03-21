@@ -47,7 +47,10 @@ function SaveVaccinationModalButton({reportId = -1, appointmentId = -1}) {
     request.reportId = reportId;
 
     save(request)
-      .then(() => console.log("Vaccination saved successfully"))
+      .then(() => {
+        console.log("Vaccination saved successfully");
+        window.location.reload();
+      })
       .catch((error: any) => showModal("Error", error.message));
   }
 

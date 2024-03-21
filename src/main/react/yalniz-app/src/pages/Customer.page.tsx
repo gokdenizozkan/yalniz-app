@@ -4,9 +4,10 @@ import {CustomerResponse} from "@/components/customer/objects";
 import {useEffect, useState} from "react";
 import PetsTable from "@/components/pet/PetsTable";
 import {showModal} from "@/App";
+import {Container} from "@mantine/core";
 
 function CustomerPage() {
-  const { id } = useParams();
+  const {id} = useParams();
   const [customer, setCustomer] = useState(new CustomerResponse());
   if (id === undefined || Number.isNaN(parseInt(id))) {
     throw new Error('id is undefined');
@@ -21,18 +22,20 @@ function CustomerPage() {
 
   console.log('customer', customer);
   return (
-    <div>
-      <h1>Customer</h1>
-      <p>Customer page</p>
-      <p>Customer id: {id}</p>
-      <p>{customer.id}</p>
-      <p>{customer.name}</p>
-      <p>{customer.email}</p>
-      <p>{customer.address}</p>
-      <p>{customer.city}</p>
-      <p>{customer.phone}</p>
-      <PetsTable pets={customer.pets}/>
-    </div>
+    <Container>
+      <div>
+        <h1>Customer</h1>
+        <p>Id: {customer.id}</p>
+        <p>Name: {customer.name}</p>
+        <p>Email: {customer.email}</p>
+        <p>Address: {customer.address}</p>
+        <p>City: {customer.city}</p>
+        <p>Phone: {customer.phone}</p>
+        <h2>Pets</h2>
+
+        <PetsTable pets={customer.pets}/>
+      </div>
+    </Container>
   );
 }
 

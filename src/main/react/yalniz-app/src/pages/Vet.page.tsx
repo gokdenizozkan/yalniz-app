@@ -4,6 +4,7 @@ import {VetResponseWithWorkdays} from "@/components/vet/objects";
 import {useEffect, useState} from "react";
 import {WorkdaysTable} from "@/components/vet/workday/WorkdaysTable";
 import {showModal} from "@/App";
+import {Container} from "@mantine/core";
 
 function VetPage() {
   const {id} = useParams();
@@ -12,29 +13,26 @@ function VetPage() {
     throw new Error('id is undefined');
   }
 
-
   useEffect(() => {
     findByIdWithWorkdays(+id)
       // @ts-ignore
       .then((result) => setVet(result.data.data))
       .catch(error => showModal('Error', error.response.data.message));
-
-
   }, [id]);
 
-  console.log('vet', vet);
   return (
     <div>
       <h1>Vet</h1>
-      <p>Vet page</p>
-      <p>Vet id: {id}</p>
-      <p>{vet.id}</p>
-      <p>{vet.name}</p>
-      <p>{vet.email}</p>
-      <p>{vet.address}</p>
-      <p>{vet.city}</p>
-      <p>{vet.phone}</p>
-      <WorkdaysTable workdays={vet.workdays}/>
+      <p>Id: {vet.id}</p>
+      <p>Name: {vet.name}</p>
+      <p>Email: {vet.email}</p>
+      <p>Address: {vet.address}</p>
+      <p>City: {vet.city}</p>
+      <p>Phone: {vet.phone}</p>
+      <h2>Workdays</h2>
+      <Container>
+        <WorkdaysTable workdays={vet.workdays}/>
+      </Container>
     </div>
   );
 }

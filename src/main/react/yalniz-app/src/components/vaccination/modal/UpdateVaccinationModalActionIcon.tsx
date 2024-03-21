@@ -6,6 +6,7 @@ import React, {useState} from "react";
 import {IconPencil} from "@tabler/icons-react";
 import {PetResponse, VaccinationUpdateRequest} from "@/components/vaccination/objects";
 import {DatePickerInput} from "@mantine/dates";
+import {showModal} from "@/App";
 
 export default UpdateVaccinationModalActionIcon;
 
@@ -41,9 +42,10 @@ function UpdateVaccinationModalActionIcon({vaccination= new PetResponse()}) {
     update(+vaccination.id, request)
       .then(() => {
         console.log("vaccination updated successfully");
+        window.location.reload();
       })
       .catch((error) => {
-        console.error("Error updating vaccination", error);
+        showModal("Error", error.message);
       })
   }
 

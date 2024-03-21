@@ -38,6 +38,7 @@ function UpdateReportModalActionIcon({reportId = -1}) {
     update(+reportId, reportForm.values)
       .then(() => {
         console.log("report updated successfully");
+        window.location.reload();
       })
       .catch((error) => showModal("Error", error.message));
   }

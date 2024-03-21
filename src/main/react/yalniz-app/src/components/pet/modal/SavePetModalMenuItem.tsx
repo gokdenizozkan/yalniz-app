@@ -28,7 +28,10 @@ function SavePetModalMenuItem({customerId = -1}) {
     values.birthdate = birthdateLocalDate;
 
     save(values)
-      .then(() => console.log("pet saved successfully", values))
+      .then(() => {
+        console.log("pet saved successfully", values);
+        window.location.reload();
+      })
       .catch((error) => showModal("Error", "Error saving pet"));
   }
 

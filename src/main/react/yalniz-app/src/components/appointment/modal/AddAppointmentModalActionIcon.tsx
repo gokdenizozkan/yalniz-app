@@ -89,7 +89,10 @@ function AddAppointmentModalActionIcon(this: any, {customerId = -1}) {
     });
     appointmentForm.values;
     save(appointmentForm.values)
-      .then(() => console.log("appointment saved successfully", appointmentForm.values))
+      .then(() => {
+        console.log("appointment saved successfully", appointmentForm.values);
+        window.location.reload();
+      })
       .catch((error) => showModal("Error", "Error saving appointment"));
   }
 

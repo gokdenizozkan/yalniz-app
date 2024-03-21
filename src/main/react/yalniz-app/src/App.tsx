@@ -6,6 +6,8 @@ import Navbar from "@/components/appShell/Navbar";
 import RouterSwitcher from "@/components/appShell/RouterSwitcher";
 import {useDisclosure} from "@mantine/hooks";
 import {ContextModalProps, modals, ModalsProvider} from "@mantine/modals";
+import bgmusic from '../public/dogus-tirlattim.mp3';
+import {useRef} from "react";
 
 export default function App() {
   const [opened, {toggle}] = useDisclosure();
@@ -22,6 +24,13 @@ export default function App() {
     </>
   );
 
+  const playedOnce = useRef(false);
+  const playBgMusic = () => {
+    if (playedOnce.current) return;
+    const audio = new Audio(bgmusic).play().then(r => console.log(r)).catch(e => console.log(e));
+    playedOnce.current = true;
+  }
+
   return (
     <MantineProvider theme={theme}>
       <ModalsProvider modals={{info: InfoModal}}>
@@ -30,7 +39,7 @@ export default function App() {
           <Header opened={opened} toggle={toggle}/>
           <Navbar/>
 
-          <AppShell.Main>
+          <AppShell.Main onClick={playBgMusic}>
             <RouterSwitcher/>
           </AppShell.Main>
 

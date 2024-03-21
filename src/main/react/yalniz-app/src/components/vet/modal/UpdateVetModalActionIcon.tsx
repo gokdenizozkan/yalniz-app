@@ -5,6 +5,7 @@ import {findById, update} from "@/components/vet/VetService";
 import {VetUpdateRequest} from "@/components/vet/objects";
 import React from "react";
 import {IconPencil} from "@tabler/icons-react";
+import {showModal} from "@/App";
 
 export default UpdateVetModalActionIcon;
 
@@ -15,7 +16,7 @@ function UpdateVetModalActionIcon({vetId = -1}) {
     if (vetId !== -1) {
       findById(vetId)
         .then(response => customerForm.setValues(response.data.data))
-        .catch(console.error);
+        .catch(() => showModal("Error", "Vet not found"));
       open();
     }
   }
@@ -30,9 +31,10 @@ function UpdateVetModalActionIcon({vetId = -1}) {
     update(+vetId, customerForm.values)
       .then(() => {
         console.log("customer updated successfully");
+        window.location.reload();
       })
       .catch((error) => {
-        console.error("Error updating customer", error);
+        showModal("Error", error.message);
       })
   }
 

@@ -6,6 +6,7 @@ import {AppointmentResponse, AppointmentUpdateRequest} from "@/components/appoin
 import React, {useState} from "react";
 import {IconPencil} from "@tabler/icons-react";
 import {DateTimePicker} from "@mantine/dates";
+import {showModal} from "@/App";
 
 export default UpdateVaccinationModalActionIcon;
 
@@ -18,7 +19,7 @@ function UpdateVaccinationModalActionIcon({appointmentId = -1}) {
     if (appointmentId !== -1) {
       findById(appointmentId)
         .then(response => setAppointment(response.data.data))
-        .catch(console.error);
+        .catch(() => showModal("Error", "Error fetching appointment"));
       open();
     }
   }
@@ -39,10 +40,9 @@ function UpdateVaccinationModalActionIcon({appointmentId = -1}) {
     update(+appointmentId, request)
       .then(() => {
         console.log("appointment updated successfully");
+        window.location.reload();
       })
-      .catch((error) => {
-        console.error("Error updating appointment", error);
-      })
+      .catch((error) => showModal("Error", error.message))
   }
 
   return (

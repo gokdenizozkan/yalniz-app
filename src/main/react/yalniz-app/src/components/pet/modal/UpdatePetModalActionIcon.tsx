@@ -6,6 +6,7 @@ import {PetResponse, PetUpdateRequest} from "@/components/pet/objects";
 import React, {useState} from "react";
 import {IconPencil} from "@tabler/icons-react";
 import {DatePickerInput} from "@mantine/dates";
+import {showModal} from "@/App";
 
 function UpdatePetModalActionIcon({pet = new PetResponse()}) {
   const [opened, {open, close}] = useDisclosure(false);
@@ -34,8 +35,11 @@ function UpdatePetModalActionIcon({pet = new PetResponse()}) {
 
     values.birthdate = birthdateLocalDate;
     update(pet.id, values)
-      .then(() => console.log("pet updated successfully"))
-      .catch((error) => console.error("Error updating pet", error))
+      .then(() => {
+        console.log("pet updated successfully");
+        window.location.reload();
+      })
+      .catch(() => showModal("Error", "Error updating pet"));
   }
 
   return (

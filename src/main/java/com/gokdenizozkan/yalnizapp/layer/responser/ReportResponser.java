@@ -46,12 +46,6 @@ public class ReportResponser {
         return StructuredResponseEntityBuilder.success(response);
     }
 
-    public ResponseEntity<StructuredResponse> saveVaccination(Long id, ReportVaccinationAddRequest request) {
-        Data data = service.saveVaccination(id, request);
-        data.map(dtoMappers.toResponse);
-        return StructuredResponseEntityBuilder.success(data.get());
-    }
-
     public ResponseEntity<StructuredResponse> deleteById(Long id) {
         service.deleteById(id);
         return StructuredResponseEntityBuilder.success();

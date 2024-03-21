@@ -41,7 +41,7 @@ public class Pet {
     @Temporal(TemporalType.DATE)
     private LocalDate birthdate;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
     @JoinColumn(name = "owner_id", referencedColumnName = "id")
     private Owner owner;
 

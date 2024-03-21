@@ -26,7 +26,7 @@ public class ReportUpdateRequestDemapper implements Function<ReportUpdateRequest
         report.setDiagnosis(reportUpdateRequest.diagnosis());
         report.setCost(reportUpdateRequest.cost());
         report.setAppointment(appointmentRepository.findById(reportUpdateRequest.appointmentId())
-                .orElseThrow(() -> new ResourceNotFoundException("Appointment not found with id: " + reportUpdateRequest.appointmentId())));
+                .orElseThrow(() -> new ResourceNotFoundException("Appointment not found with id: " + reportUpdateRequest.appointmentId())));;
 
         return report;
     }

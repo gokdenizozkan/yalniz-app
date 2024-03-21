@@ -42,6 +42,7 @@ public class WorkdayService {
         if (!repository.existsById(id)) {
             throw new ResourceNotFoundException("Workday not found with id: " + id);
         }
+
         repository.deleteById(id);
     }
 }

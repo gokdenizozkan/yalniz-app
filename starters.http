@@ -1,0 +1,85 @@
+POST localhost:8080/api/v2/owners
+Content-Type: application/json
+
+{
+  "name": "string",
+  "phone": "string",
+  "email": "string",
+  "address": "string",
+  "city": "string"
+}
+
+###
+
+POST localhost:8080/api/v2/pets
+Content-Type: application/json
+
+{
+  "name": "string",
+  "species": "string",
+  "breed": "string",
+  "gender": "string",
+  "color": "string",
+  "birthdate": "2024-03-21",
+  "ownerId": 1
+}
+
+###
+
+POST localhost:8080/api/v2/vets
+Content-Type: application/json
+
+{
+  "name": "string",
+  "phone": "string",
+  "email": "string",
+  "address": "string",
+  "city": "string"
+}
+
+###
+
+POST localhost:8080/api/v2/workdays
+Content-Type: application/json
+
+{
+  "date": "2024-03-21",
+  "vetId": 1
+}
+
+###
+
+POST localhost:8080/api/v2/appointments
+Content-Type: application/json
+
+{
+  "start": "2024-03-21T15:19:11.297Z",
+  "petId": 1,
+  "vetId": 1
+}
+
+###
+
+POST localhost:8080/api/v2/reports
+Content-Type: application/json
+
+{
+  "title": "string",
+  "diagnosis": "string",
+  "cost": 0,
+  "appointmentId": 1
+}
+
+###
+
+POST localhost:8080/api/v2/vaccinations
+Content-Type: application/json
+
+{
+  "name": "string",
+  "code": "string",
+  "administrationDate": "2024-04-21",
+  "expirationDate": "2024-05-21",
+  "petId": 1,
+  "reportId": 1
+}

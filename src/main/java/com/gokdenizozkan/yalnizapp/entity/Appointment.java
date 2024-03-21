@@ -38,15 +38,15 @@ public class Appointment {
     @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime end;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
     @JoinColumn(name = "pet_id", referencedColumnName = "id")
     private Pet pet;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
     @JoinColumn(name = "vet_id", referencedColumnName = "id")
     private Vet vet;
 
-    @OneToOne(mappedBy = "appointment", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @OneToOne(mappedBy = "appointment", cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "report_id", referencedColumnName = "id")
     private Report report;
 }

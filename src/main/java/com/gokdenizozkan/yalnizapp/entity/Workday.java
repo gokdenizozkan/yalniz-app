@@ -32,7 +32,7 @@ public class Workday {
     @Temporal(TemporalType.DATE)
     private LocalDate date;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
     @JoinColumn(name = "vet_id", referencedColumnName = "id")
     private Vet vet;
 }

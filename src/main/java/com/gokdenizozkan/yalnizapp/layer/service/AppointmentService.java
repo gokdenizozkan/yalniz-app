@@ -65,10 +65,11 @@ public class AppointmentService {
     }
 
     public void deleteById(Long id) {
-        if (!repository.existsById(id)) {
-            throw new ResourceNotFoundException("Appointment not found with id " + id);
-        }
+        Appointment appointment = repository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Appointment not found with id " + id));
+
         repository.deleteById(id);
+        repository.flush();
     }
 
     public Appointment findById(Long id) {

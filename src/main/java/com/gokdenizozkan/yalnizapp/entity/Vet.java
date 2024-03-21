@@ -35,6 +35,6 @@ public class Vet {
     @OneToMany(mappedBy = "vet", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Appointment> appointments;
 
-    @OneToMany(mappedBy = "vet", cascade = {CascadeType.ALL}, orphanRemoval = true)
+    @OneToMany(mappedBy = "vet", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Workday> workdays;
 }

@@ -26,6 +26,7 @@ public class AppointmentSaveRequestDemapper implements Function<AppointmentSaveR
                 .orElseThrow(() -> new ResourceNotFoundException("Vet not found with id " + appointmentSaveRequest.vetId())));
         appointment.setPet(petRepository.findById(appointmentSaveRequest.petId())
                 .orElseThrow(() -> new ResourceNotFoundException("Pet not found with id " + appointmentSaveRequest.petId())));
+        appointment.setReport(null);
 
         return appointment;
     }

@@ -45,11 +45,6 @@ public class ReportController {
         return responser.update(id, request);
     }
 
-    @PatchMapping("/{id}")
-    public ResponseEntity<StructuredResponse> saveVaccination(@PathVariable Long id, @RequestBody ReportVaccinationAddRequest request) {
-        return responser.saveVaccination(id, request);
-    }
-
     @DeleteMapping("/{id}")
     public ResponseEntity<StructuredResponse> delete(@PathVariable Long id) {
         return responser.deleteById(id);

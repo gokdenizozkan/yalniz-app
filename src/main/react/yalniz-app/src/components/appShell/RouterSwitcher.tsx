@@ -13,8 +13,8 @@ import ReportPage from "@/pages/Report.page";
 function RouterSwitcher() {
   return (
     <Routes>
-      <Route path="/*" element={<NotFoundPage />} />
-
+      <Route path="/#/*" element={<NotFoundPage />} />
+      
       <Route path={"/#/dashboard"} element={<DashboardPage />} />
       <Route path={"/#/appointments"} element={<AppointmentsPage />} />
       <Route path={"/#/reports"} element={<ReportsPage />} />

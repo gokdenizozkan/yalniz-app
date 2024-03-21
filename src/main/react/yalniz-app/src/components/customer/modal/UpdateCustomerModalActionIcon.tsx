@@ -26,6 +26,14 @@ function UpdateCustomerModalActionIcon({customerId = -1}) {
   );
 
   const onSubmit = () => {
+    const request = new CustomerUpdateRequest();
+    request.id = customerId;
+    request.name = customerForm.values.name;
+    request.phone = customerForm.values.phone;
+    request.email = customerForm.values.email;
+    request.city = customerForm.values.city;
+    request.address = customerForm.values.address;
+
     update(+customerId, customerForm.values)
       .then(() => {
         console.log("customer updated successfully");

@@ -14,20 +14,27 @@ function SaveCustomerModalButton() {
     }
   );
 
-  const onSubmit = () => {
-    save(customerForm.values)
+  const onSubmit = (v:CustomerSaveRequest) => {
+    const request = new CustomerSaveRequest();
+    request.name = customerForm.values.name;
+    request.phone = customerForm.values.phone;
+    request.email = customerForm.values.email;
+    request.city = customerForm.values.city;
+    request.address = customerForm.values.address;
+
+    save(request)
       .then(() => {
         console.log("customer saved successfully");
         window.location.reload();
       })
-      .catch((error) => showModal("Error", error.message))
+      .catch((error) => showModal("Error", error.message));
   }
 
   return (
     <>
       <Modal opened={opened} onClose={close} title="Register New Customer" centered>
         <Box maw={340} mx="auto">
-          <form onSubmit={(values) => {onSubmit()}}>
+          <form onSubmit={customerForm.onSubmit((v) => onSubmit(v))}>
             <TextInput withAsterisk label="Name" placeholder="Hold the Door" {...customerForm.getInputProps('name')} />
             <TextInput withAsterisk label="Phone" placeholder="+9059988877665544" {...customerForm.getInputProps('phone')} />
             <TextInput withAsterisk label="Email" placeholder="your@email.com" {...customerForm.getInputProps('email')} />

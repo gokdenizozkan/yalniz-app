@@ -1,7 +1,7 @@
-import { useDisclosure } from '@mantine/hooks';
-import {Modal, Button, Box, TextInput,Group, ActionIcon, rem} from '@mantine/core';
+import {useDisclosure} from '@mantine/hooks';
+import {ActionIcon, Box, Button, Group, Modal, rem, TextInput} from '@mantine/core';
 import {useForm} from "@mantine/form";
-import {findById, update} from "@/components/pet/PetService";
+import {update} from "@/components/pet/PetService";
 import {PetResponse, PetUpdateRequest} from "@/components/pet/objects";
 import React, {useState} from "react";
 import {IconPencil} from "@tabler/icons-react";

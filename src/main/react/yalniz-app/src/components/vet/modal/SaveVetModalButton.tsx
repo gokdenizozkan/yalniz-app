@@ -1,5 +1,5 @@
-import { useDisclosure } from '@mantine/hooks';
-import {Modal, Button, Box, TextInput, Checkbox, Group, Textarea} from '@mantine/core';
+import {useDisclosure} from '@mantine/hooks';
+import {Box, Button, Group, Modal, Textarea, TextInput} from '@mantine/core';
 import {useForm} from "@mantine/form";
 import {save} from "@/components/vet/VetService";
 import {VetSaveRequest} from "@/components/vet/objects";

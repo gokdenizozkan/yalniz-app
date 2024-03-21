@@ -1,11 +1,8 @@
-import {Avatar, Table, Group, Text, ActionIcon, rem} from '@mantine/core';
-import {
-  IconTrash,
-  IconUser,
-} from '@tabler/icons-react';
+import {ActionIcon, Avatar, Group, rem, Table, Text} from '@mantine/core';
+import {IconTrash, IconUser,} from '@tabler/icons-react';
 import React, {useEffect, useRef, useState} from "react";
 import {VetResponse} from "@/components/vet/objects";
-import {deleteById, findAll, search} from "@/components/vet/VetService";
+import {deleteById, findAll} from "@/components/vet/VetService";
 import UpdateVetModalActionIcon from "@/components/vet/modal/UpdateVetModalActionIcon";
 import {useNavigate} from "react-router-dom";
 import AddWorkdayModalActionIcon from "@/components/vet/workday/modal/AddWorkdayModalActionIcon";

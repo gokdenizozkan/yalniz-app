@@ -1,5 +1,5 @@
-import { useDisclosure } from '@mantine/hooks';
-import {Modal, Button, Box, TextInput, Checkbox, Group, Textarea, ActionIcon, rem} from '@mantine/core';
+import {useDisclosure} from '@mantine/hooks';
+import {ActionIcon, Box, Button, Group, Modal, rem, TextInput} from '@mantine/core';
 import {useForm} from "@mantine/form";
 import {update} from "@/components/vaccination/VaccinationService";
 import React, {useState} from "react";

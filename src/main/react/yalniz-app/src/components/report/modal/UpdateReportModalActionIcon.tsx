@@ -1,5 +1,5 @@
-import { useDisclosure } from '@mantine/hooks';
-import {Modal, Button, Box, TextInput, Checkbox, Group, Textarea, ActionIcon, rem, NumberInput} from '@mantine/core';
+import {useDisclosure} from '@mantine/hooks';
+import {ActionIcon, Box, Button, Group, Modal, NumberInput, rem, TextInput} from '@mantine/core';
 import {useForm} from "@mantine/form";
 import {findById, update} from "@/components/report/ReportService";
 import {ReportUpdateRequest} from "@/components/report/objects";

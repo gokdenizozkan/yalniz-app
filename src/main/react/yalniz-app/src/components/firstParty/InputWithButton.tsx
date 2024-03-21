@@ -1,5 +1,5 @@
-import { TextInput, TextInputProps, ActionIcon, useMantineTheme, rem } from '@mantine/core';
-import { IconSearch, IconArrowRight } from '@tabler/icons-react';
+import {ActionIcon, rem, TextInput, TextInputProps, useMantineTheme} from '@mantine/core';
+import {IconArrowRight, IconSearch} from '@tabler/icons-react';
 import {useState} from "react";
 
 export function InputWithButton({runnableOnSubmit = (input:any) => {}, placeholder = 'Your input'}, props: TextInputProps) {

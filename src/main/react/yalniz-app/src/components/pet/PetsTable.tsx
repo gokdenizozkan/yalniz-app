@@ -1,4 +1,4 @@
-import {Table, Group, Text, ActionIcon, rem} from '@mantine/core';
+import {ActionIcon, Group, rem, Table, Text} from '@mantine/core';
 import {IconTrash} from '@tabler/icons-react';
 import React from "react";
 import {PetResponse} from "@/components/pet/objects";

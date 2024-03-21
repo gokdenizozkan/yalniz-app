@@ -1,4 +1,4 @@
-import { PetResponse } from "@/components/pet/objects";
+import {PetResponse} from "@/components/pet/objects";
 
 export class CustomerSaveRequest {
   name: string = '';

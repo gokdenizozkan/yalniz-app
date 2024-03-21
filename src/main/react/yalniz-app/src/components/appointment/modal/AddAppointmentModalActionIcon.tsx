@@ -1,16 +1,16 @@
 import {useDisclosure} from '@mantine/hooks';
 import {useForm} from '@mantine/form';
 import {
+  ActionIcon,
   Box,
   Button,
-  Group,
-  rem,
-  ActionIcon,
-  Modal,
-  useCombobox,
   Combobox,
+  Group,
   InputBase,
-  InputPlaceholder
+  InputPlaceholder,
+  Modal,
+  rem,
+  useCombobox
 } from '@mantine/core';
 import {AppointmentSaveRequest} from "@/components/appointment/objects";
 import {IconCalendarPlus} from "@tabler/icons-react";

@@ -1,13 +1,6 @@
 import {useDisclosure} from '@mantine/hooks';
 import {useForm} from '@mantine/form';
-import {
-  Box,
-  Button,
-  Group,
-  rem,
-  ActionIcon,
-  Modal,
-} from '@mantine/core';
+import {ActionIcon, Box, Button, Group, Modal, rem,} from '@mantine/core';
 import {IconCalendarPlus} from "@tabler/icons-react";
 import {DatePickerInput} from "@mantine/dates";
 import React, {useState} from "react";

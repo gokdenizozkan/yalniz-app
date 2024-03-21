@@ -1,8 +1,5 @@
-import {Avatar, Table, Group, Text, ActionIcon, rem} from '@mantine/core';
-import {
-  IconTrash,
-  IconUser,
-} from '@tabler/icons-react';
+import {ActionIcon, Avatar, Group, rem, Table, Text} from '@mantine/core';
+import {IconTrash, IconUser,} from '@tabler/icons-react';
 import React from "react";
 import {deleteById} from "@/components/vet/workday/WorkdayService";
 import UpdateWorkdayModalActionIcon from "@/components/vet/workday/modal/UpdateWorkdayModalActionIcon";

@@ -2,7 +2,6 @@ import {useParams} from "react-router-dom";
 import {findById} from "@/components/report/ReportService";
 import {ReportResponse} from "@/components/report/objects";
 import React, {useEffect, useState} from "react";
-import {WorkdaysTable} from "@/components/vet/workday/WorkdaysTable";
 import {VaccinationsTable} from "@/components/vaccination/VaccinationsTable";
 import {showModal} from "@/App";
 import {Container} from "@mantine/core";

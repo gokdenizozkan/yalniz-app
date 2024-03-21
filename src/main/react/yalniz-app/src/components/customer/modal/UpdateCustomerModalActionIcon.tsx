@@ -1,5 +1,5 @@
-import { useDisclosure } from '@mantine/hooks';
-import {Modal, Button, Box, TextInput, Checkbox, Group, Textarea, ActionIcon, rem} from '@mantine/core';
+import {useDisclosure} from '@mantine/hooks';
+import {ActionIcon, Box, Button, Group, Modal, rem, Textarea, TextInput} from '@mantine/core';
 import {useForm} from "@mantine/form";
 import {findById, update} from "@/components/customer/CustomerService";
 import {CustomerUpdateRequest} from "@/components/customer/objects";

@@ -1,8 +1,7 @@
-import { useDisclosure } from '@mantine/hooks';
-import {Modal, Button, Box, TextInput, Checkbox, Group, Textarea} from '@mantine/core';
+import {useDisclosure} from '@mantine/hooks';
+import {Box, Button, Group, Modal, Textarea, TextInput} from '@mantine/core';
 import {useForm} from "@mantine/form";
-import axios from "axios";
-import {findAll, save} from "@/components/customer/CustomerService";
+import {save} from "@/components/customer/CustomerService";
 import {CustomerSaveRequest} from "@/components/customer/objects";
 import {showModal} from "@/App";
 

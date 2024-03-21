@@ -1,8 +1,8 @@
-import {Table, Group, Text, ActionIcon, rem} from '@mantine/core';
+import {ActionIcon, Group, rem, Table, Text} from '@mantine/core';
 import {IconTrash} from '@tabler/icons-react';
 import React from "react";
 import {PetResponse} from "@/components/vaccination/objects";
-import {deleteById, findAll, search} from "@/components/vaccination/VaccinationService";
+import {deleteById} from "@/components/vaccination/VaccinationService";
 import {useNavigate} from "react-router-dom";
 import UpdateVaccinationModalActionIcon from "@/components/vaccination/modal/UpdateVaccinationModalActionIcon";
 import {showModal} from "@/App";

@@ -1,10 +1,10 @@
-import { useDisclosure } from '@mantine/hooks';
-import {Modal, Button, Box, TextInput, Group, ActionIcon, rem, NumberInput} from '@mantine/core';
+import {useDisclosure} from '@mantine/hooks';
+import {ActionIcon, Box, Button, Group, Modal, NumberInput, rem, TextInput} from '@mantine/core';
 import {useForm} from "@mantine/form";
 import {save as saveReport} from "@/components/report/ReportService";
 import {ReportSaveRequest} from "@/components/report/objects";
 import {IconReport} from "@tabler/icons-react";
-import React, {useState} from "react";
+import React from "react";
 import {showModal} from "@/App";
 
 function SaveReportModalActionIcon({appointmentId = -1}) {

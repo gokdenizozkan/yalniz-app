@@ -1,13 +1,11 @@
 import {useDisclosure} from '@mantine/hooks';
-import {Modal, Button, Box, TextInput, Checkbox, Group, Textarea, ActionIcon, rem} from '@mantine/core';
+import {ActionIcon, Box, Button, Group, Modal, rem, TextInput} from '@mantine/core';
 import {useForm} from "@mantine/form";
 import {save} from "@/components/vaccination/VaccinationService";
 import {VaccinationSaveRequest} from "@/components/vaccination/objects";
 import {DatePickerInput} from "@mantine/dates";
-import {useEffect, useRef, useState} from "react";
-import {IconCalendarPlus, IconMedicineSyrup} from "@tabler/icons-react";
-import {PetResponse} from "@/components/pet/objects";
-import {findById} from "@/components/report/ReportService";
+import {useEffect, useState} from "react";
+import {IconMedicineSyrup} from "@tabler/icons-react";
 import {findById as findAppointmentById} from "@/components/appointment/AppointmentService";
 import {ReportResponse} from "@/components/report/objects";
 import {showModal} from "@/App";

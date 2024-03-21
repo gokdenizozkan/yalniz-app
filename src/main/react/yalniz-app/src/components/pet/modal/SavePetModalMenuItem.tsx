@@ -1,5 +1,5 @@
 import {useDisclosure} from '@mantine/hooks';
-import {Modal, Button, Box, TextInput, Group, rem, ActionIcon} from '@mantine/core';
+import {ActionIcon, Box, Button, Group, Modal, rem, TextInput} from '@mantine/core';
 import {useForm} from "@mantine/form";
 import {save} from "@/components/pet/PetService";
 import {PetSaveRequest} from "@/components/pet/objects";

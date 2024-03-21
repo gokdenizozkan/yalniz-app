@@ -1,9 +1,5 @@
-import {Avatar, Table, Group, Text, ActionIcon, rem} from '@mantine/core';
-import {
-  IconMessages,
-  IconTrash,
-  IconUser,
-} from '@tabler/icons-react';
+import {ActionIcon, Avatar, Group, rem, Table, Text} from '@mantine/core';
+import {IconTrash, IconUser,} from '@tabler/icons-react';
 import React, {useEffect, useRef, useState} from "react";
 import {CustomerResponse} from "@/components/customer/objects";
 import {deleteById, findAll, search} from "@/components/customer/CustomerService";

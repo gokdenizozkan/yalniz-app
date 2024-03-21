@@ -15,15 +15,15 @@ function RouterSwitcher() {
     <Routes>
       <Route path="/*" element={<NotFoundPage />} />
 
-      <Route path={"/dashboard"} element={<DashboardPage />} />
-      <Route path={"/appointments"} element={<AppointmentsPage />} />
-      <Route path={"/reports"} element={<ReportsPage />} />
-      <Route path={"/customers"} element={<CustomersPage />} />
-      <Route path={"/vets"} element={<VetsPage />} />
+      <Route path={"/#/dashboard"} element={<DashboardPage />} />
+      <Route path={"/#/appointments"} element={<AppointmentsPage />} />
+      <Route path={"/#/reports"} element={<ReportsPage />} />
+      <Route path={"/#/customers"} element={<CustomersPage />} />
+      <Route path={"/#/vets"} element={<VetsPage />} />
 
-      <Route path={"/customers/:id"} element={<CustomerPage />}/>
-      <Route path={"/vets/:id"} element={<VetPage />}/>
-      <Route path={"/reports/:id"} element={<ReportPage />}/>
+      <Route path={"/#/customers/:id"} element={<CustomerPage />}/>
+      <Route path={"/#/vets/:id"} element={<VetPage />}/>
+      <Route path={"/#/reports/:id"} element={<ReportPage />}/>
     </Routes>
   )
 }
